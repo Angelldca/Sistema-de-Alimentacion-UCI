@@ -1,0 +1,22 @@
+.cardContainer{
+    border: 1px solid #444;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+h3{
+    margin: 50px;
+}
+
+.cardMenu{
+    background-color: #ccc;
+    max-width: 315px;
+    margin-bottom: '5px';
+    min-height: 500px;
+}
+.cards{
+    width: 340px;
+}

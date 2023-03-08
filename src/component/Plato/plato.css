@@ -1,0 +1,27 @@
+
+
+.containerTablePlato{
+    border: 1px solid #ccc;
+    height: 600px;
+    max-height: 600px;
+    overflow-y: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+}
+
+
+.createPlato{
+    margin: 30px;
+    margin-left: 15%;
+    padding: 10px;
+    width: 70%;
+    height: 350px;
+    border: 1px solid #ccc;
+}
+.offStyle{
+    margin: 0px;
+    border: 0px;
+    text-decoration: none;
+    outline: none;
+    width: 100%;
+}

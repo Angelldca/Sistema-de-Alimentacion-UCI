@@ -1,0 +1,30 @@
+
+.containerInfo{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-bottom: 1px solid #ccc;
+   
+}
+.containerInfo > div{
+    border-right: 1px solid #ccc;
+    
+    padding: 10px;
+}
+ h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.containerCant{
+    display: flex;
+    align-items: center;
+   
+}
+
+
+.icon{
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}

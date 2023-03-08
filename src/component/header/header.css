@@ -1,0 +1,36 @@
+  .containerNavbar{
+    margin-bottom: 100px;
+  }
+  
+  
+  #header{
+      height: 80px;
+      width: 100%;
+      background-color: #025f86; 
+  }
+
+  #logo{
+      color: white;
+      font-size: 50px;
+  }
+  #header  a{
+      color: white;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin-right: 50px;
+    
+  }
+  #header  a :hover{
+    color: rgb(190, 207, 29);
+    text-decoration-line: underline;
+  
+}
+.nav_header{
+    justify-content: end;
+
+}
+
+
+.dropdwon_items{
+    color: #444;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

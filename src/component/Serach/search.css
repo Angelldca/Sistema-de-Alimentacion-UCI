@@ -1,0 +1,22 @@
+.search {
+    display: flex;
+    border: 1px solid #ccc;
+    width: 50%;
+    border-radius: 6px;
+    margin: 14px;
+}
+
+#searchForm{
+    width: 100%;
+    border: none;
+    
+}
+
+.btnSearch {
+    border-radius: 0px 5px 5px 0px !important;
+}
+
+#searchForm:focus{
+    border-radius: 5px 0px 0px 5px !important;
+   
+}
