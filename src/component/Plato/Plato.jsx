@@ -8,9 +8,9 @@ export default function Plato() {
     <div>
       <h4>Platos</h4>
       <hr />
+      <CreatePlato/>
       {/*
       
-      <CreatePlato/>
       <PlatoView></PlatoView>
       */}
     </div>

@@ -11,10 +11,10 @@ import Menu from '../menu/menu';
 function Admin_Panel() {
   return (
     <div style = {{minHeight:'600px'}}>
+      <Plato></Plato>
       <Menu></Menu>
       {/*
       
-      <Plato></Plato>
        <Info />
         <FormData />
         <Chart />
