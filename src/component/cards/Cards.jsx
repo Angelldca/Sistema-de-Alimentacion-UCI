@@ -9,7 +9,7 @@ import "./cards.css";
 function CardMenu() {
     let now = new Date().toLocaleDateString('es-es', { weekday:"long", day:"numeric",month:"long", year:"numeric"});
   return (
-    <div className="m-2" className="cards">
+    <div className="m-2 cards">
       <Card border="primary" className="cardMenu">
         <Card.Header>
           {`${
