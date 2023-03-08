@@ -12,8 +12,8 @@ import Reserva from '../reserva/Reserva';
 function Admin_Panel() {
   return (
     <div style = {{minHeight:'600px'}}>
-      <Reserva/>
       {/*
+      <Reserva/>
       
       <Menu></Menu>
       <Plato></Plato>
