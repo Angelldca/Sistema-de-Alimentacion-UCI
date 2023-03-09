@@ -1,0 +1,13 @@
+
+
+.listaPlatosMenu{
+    width: 50%;
+}
+.contenedorCreateMenu{
+    display: flex;
+    margin-left: 40;
+    
+}
+.calendarioMenu{
+  margin-left: 300px;
+}

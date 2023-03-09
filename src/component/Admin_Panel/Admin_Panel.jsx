@@ -12,10 +12,9 @@ import Reserva from '../reserva/Reserva';
 function Admin_Panel() {
   return (
     <div style = {{minHeight:'600px'}}>
+      <Menu></Menu>
       {/*
       <Reserva/>
-      
-      <Menu></Menu>
       <Plato></Plato>
        <Info />
         <FormData />
