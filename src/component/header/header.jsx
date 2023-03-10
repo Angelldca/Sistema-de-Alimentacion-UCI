@@ -5,6 +5,13 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+
+import {
+  Outlet,
+  Link,
+  useLoaderData,
+} from "react-router-dom";
+
 import "../header/header.css";
 //import "../../img/angel.jpg"
 const HeaderPrueba = (args) => {
@@ -12,35 +19,30 @@ const HeaderPrueba = (args) => {
     <div className = "containerNavbar">
       <Navbar collapseOnSelect expand="lg" id="header" fixed='top'>
         <Container>
-          <Navbar.Brand href="#home" id="logo">
+          <Navbar.Brand href="/home" id="logo">
             <p>SIGA</p>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="nav_header">
-            <Nav className="mt-4">
-              <Nav.Link href="#reserva" bg="ligth">
+            <Nav className="mt-4" style={{alignItems:"baseline"}}>
+              <Link to="/home/admin/reserva" bg="ligth">
                 <p>Reserva</p>
-              </Nav.Link>
-              <Nav.Link href="#factura" bg="ligth">
+              </Link>
+              <Link to="/home/admin/factura" bg="ligth">
                 <p>Factura</p>
-              </Nav.Link>
-              <Nav.Link href="#pricing">
+              </Link>
+              <Link to="/home/admin/menu">
                 <p>Menu</p>
-              </Nav.Link>
+              </Link>
               <NavDropdown title="Platos" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  <p className="dropdwon_items">Crear Platos</p>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  <p className="dropdwon_items">Actualizar Platos</p>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  <p className="dropdwon_items">Eliminar Platos</p>
-                </NavDropdown.Item>
+
+                 <Link className="dropdown-item" to={`/home/admin/plato`}> 
+                 <p className="dropdwon_items">Crear Platos</p>
+                 </Link>   
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
+                <Link className="dropdown-item" to={`/home/admin/plato/platosview`}> 
                   <p className="dropdwon_items">Listar</p>
-                </NavDropdown.Item>
+                  </Link>
               </NavDropdown>
               <Nav.Link href="#deets">
                 <p>Log out</p>
