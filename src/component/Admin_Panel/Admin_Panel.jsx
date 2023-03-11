@@ -7,15 +7,19 @@ import React, { useEffect } from "react";
 import Plato from '../Plato/Plato';
 import Menu from '../menu/menu';
 import Reserva from '../reserva/Reserva';
-import { Outlet } from "react-router-dom";
+import { Outlet,Navigate, redirect } from "react-router-dom";
 import HeaderPrueba from '../header/header';
 import BreadcrumbMigas from '../migas/Breadcrumb';
 import Footer from '../footer/Footer';
 
+
+import { useNavigate } from 'react-router-dom';
+
 function Admin_Panel() {
-  useEffect(()=>{
-    //window.location.href = "/home/admin/homeAdmmin"
-  })
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate('/admin/homeAdmin');
+  }, []);
   return (
     <div style = {{minHeight:'600px'}}>
       <HeaderPrueba/>

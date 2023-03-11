@@ -19,28 +19,28 @@ const HeaderPrueba = (args) => {
     <div className = "containerNavbar">
       <Navbar collapseOnSelect expand="lg" id="header" fixed='top'>
         <Container>
-          <Navbar.Brand href="/home" id="logo">
+          <Navbar.Brand href="/admin" id="logo">
             <p>SIGA</p>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="nav_header">
             <Nav className="mt-4" style={{alignItems:"baseline"}}>
-              <Link to="/home/admin/reserva" bg="ligth">
+              <Link to="/admin/reserva" bg="ligth">
                 <p>Reserva</p>
               </Link>
-              <Link to="/home/admin/factura" bg="ligth">
+              <Link to="/admin/factura" bg="ligth">
                 <p>Factura</p>
               </Link>
-              <Link to="/home/admin/menu">
+              <Link to="/admin/menu">
                 <p>Menu</p>
               </Link>
-              <NavDropdown title="Platos" id="collasible-nav-dropdown">
+              <NavDropdown title="Platos" id="collasible-nav-dropdown" >
 
-                 <Link className="dropdown-item" to={`/home/admin/plato`}> 
+                 <Link className="dropdown-item" to={`/admin/plato`}> 
                  <p className="dropdwon_items">Crear Platos</p>
                  </Link>   
                 <NavDropdown.Divider />
-                <Link className="dropdown-item" to={`/home/admin/plato/platosview`}> 
+                <Link className="dropdown-item" to={`/admin/plato/platosview`}> 
                   <p className="dropdwon_items">Listar</p>
                   </Link>
               </NavDropdown>

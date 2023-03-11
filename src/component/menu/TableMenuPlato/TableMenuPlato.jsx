@@ -1,29 +1,55 @@
-import React from 'react'
-import Table from 'react-bootstrap/Table';
-import FilaMenuPlato from './FilaMenuPlato';
-function TableMenuPlato() {
+import React, { useEffect, useState } from "react";
+import Table from "react-bootstrap/Table";
+import FilaMenuPlato from "./FilaMenuPlato";
+import { Button } from "react-bootstrap";
+
+
+function TableMenuPlato({getChekbox}) {
+  const [result, setDataResult] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    fetch("http://localhost:8080/plato")
+      .then((data) => data.json())
+      .then((data) => {
+        setDataResult(data);
+        setIsLoading(false);
+      });
+  });
+
+
+  if (isLoading) {
+    // ⬅️ si está cargando, mostramos un texto que lo indique
     return (
-
-        <Table bordered hover>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Medida</th>
-                    <th>Precio</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-               <FilaMenuPlato></FilaMenuPlato>
-               <FilaMenuPlato></FilaMenuPlato>
-               <FilaMenuPlato></FilaMenuPlato>
-               <FilaMenuPlato></FilaMenuPlato>
-               <FilaMenuPlato></FilaMenuPlato>
-            </tbody>
-        </Table>
-
-    )
+      <div className="App">
+        <h1>Cargando...</h1>
+        
+      </div>
+    );
+  }
+  return (
+    <Table bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Medida</th>
+          <th>Precio</th>
+          <th>Selecciona los platos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {result.map((plato, index) => (
+          <FilaMenuPlato
+            plato={plato}
+            index={index}
+            getChekbox={getChekbox}
+            key={plato.id_plato}
+          ></FilaMenuPlato>
+        ))}
+      </tbody>
+    </Table>
+  );
 }
 
-export default TableMenuPlato
+export default TableMenuPlato;

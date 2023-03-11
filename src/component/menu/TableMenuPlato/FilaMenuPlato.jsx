@@ -1,57 +1,30 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import {AiOutlineDelete} from "react-icons/ai"
-function FilaMenuPlato() {
+function FilaMenuPlato({plato,index, getChekbox}) {
+  
+  const handleCheckboxChange =  (event) => {
+      const { checked } = event.target;
+      getChekbox(plato.id_plato)
+     
+  }
+
   return (
     <tr>
-    <td>1</td>
+    <td>{index+1}</td>
     <td>
-      {" "}
-      <input
-        type="text"
-        defaultValue="23"
-        className=""
-        disabled
-        name="nombre_plato"
-        
-      />
-    </td>
-    <td>
-      <input
-        type="text"
-        defaultValue="24"
-        className=""
-        disabled
-        
-        name="gramaje"
-        
-      />
-    </td>
-    <td>
-      <input
-        type="text"
-        defaultValue="{formData.precio_plato}"
-        className=""
-        disabled
-        
-        name="precio_plato"
       
-      />
+      <p>{plato.nombre_plato}</p>
     </td>
     <td>
-        <input type="checkbox"/>
-        {/*
-        
-      <Button
-        style={{ color: "black" }}
-        className="ms-3 me-3"
-        variant="outline-info"
-       
-      >
-        <AiOutlineDelete />
-      </Button>
-        */}
-    
+       <p>{plato.gramaje}</p>
+    </td>
+    <td>
+     
+      <p>{plato.precio_plato}</p>
+    </td>
+    <td>
+        <input type="checkbox" onChange={handleCheckboxChange}/>
     </td>
   </tr>
   );

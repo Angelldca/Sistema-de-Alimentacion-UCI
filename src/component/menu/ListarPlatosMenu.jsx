@@ -2,10 +2,11 @@ import React from 'react'
 import TableMenuPlato from './TableMenuPlato/TableMenuPlato'
 
 
-function ListarPlatosMenu() {
+function ListarPlatosMenu({getChekbox}) {
+    
     return (
         <div className="listaPlatosMenu">
-            <TableMenuPlato></TableMenuPlato>
+            <TableMenuPlato getChekbox={getChekbox}></TableMenuPlato>
             
         </div>
     )
