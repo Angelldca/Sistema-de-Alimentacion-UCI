@@ -1,7 +1,7 @@
 
 
 .listaPlatosMenu{
-    width: 50%;
+    width: 60%;
 }
 .contenedorCreateMenu{
     display: flex;
@@ -10,4 +10,10 @@
 }
 .calendarioMenu{
   margin-left: 300px;
+}
+
+
+.actualizarContainer{
+  display: flex;
+  justify-content: space-around;
 }

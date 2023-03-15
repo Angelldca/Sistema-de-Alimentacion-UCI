@@ -15,6 +15,8 @@ import Login from "./component/Login/Login";
 
 import { Outlet, Navigate, redirect } from "react-router-dom";
 import { PlatoContext } from "./contexts/platoContext";
+import ListarMenu from "./component/menu/ListarMenu";
+import ActualizarMenu from "./component/menu/ActualizarMenu";
 
 function App() {
   const [platos, setPlatos] = useState();
@@ -31,6 +33,16 @@ function App() {
         {
           path: "menu",
           element: <Menu />,
+        },
+        {
+          path: "menu/menuView",
+          element: <ListarMenu />,
+
+        },
+        {
+          path: "menu/update",
+          element: <ActualizarMenu />,
+          
         },
         {
           path: "reserva",

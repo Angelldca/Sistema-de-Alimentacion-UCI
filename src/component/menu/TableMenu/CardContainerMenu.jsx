@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import CardMenu from './Cards'
-import './cards.css'
-import { generarListaMenuXfehca } from '../../utils/Utils';
+import CardMenu from './CardMenu'
+import '../../cards/cards.css'
+import { generarListaMenuXfehca } from '../../../utils/Utils';
 
-const  CardContainer = ({reservar})=> {
+const  CardContainerMenu = ()=> {
     const [data,setData] =useState();
     const [menuFecha,setMenuFecha] =useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -13,19 +13,15 @@ const  CardContainer = ({reservar})=> {
           fetch("http://localhost:8080/menu")
           .then((response)=> response.json())
           .then((response) =>{
-            
             setData(response)
             setIsLoading(false);
              
-          })
-          .catch(err=>{
-            console.log(err);
-            setMenuFecha([])
           })         
     },[actualizar])
     useEffect(()=>{
-       
       setMenuFecha(generarListaMenuXfehca(data));
+      console.log(menuFecha)
+
     },[data])
    
    // console.log(menuFecha)
@@ -46,7 +42,6 @@ const  CardContainer = ({reservar})=> {
               {menuFecha.map((menu,index)=>(
                
                <CardMenu 
-               reservar={reservar} 
                menu={menu} 
                index={index} 
                key={index} 
@@ -61,4 +56,4 @@ const  CardContainer = ({reservar})=> {
     )
 }
 
-export default CardContainer
+export default CardContainerMenu

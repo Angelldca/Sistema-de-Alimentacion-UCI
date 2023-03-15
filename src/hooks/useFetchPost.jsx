@@ -10,7 +10,6 @@ async function useFetchPost  (url, options) {
         
         const response = await fetch(url, options);
         data = await response.json();
-        
         isLoading = false
       } catch (error) {
         errorResult =error;

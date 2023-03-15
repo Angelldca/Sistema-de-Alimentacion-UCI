@@ -66,8 +66,19 @@ export default function Filas({ plato, index, setActualizar, actualizar }) {
         )
           .then((response) => response.json())
           .then((response) => {
-            Swal.fire("Eliminado!", `${response.nombre_plato}`, "success");
-            setActualizar(!actualizar);
+           
+            if(response.error === 'Bad Request'){
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `${response.message}`,
+              });
+            }else{
+              Swal.fire("Eliminado!", `${response.nombre_plato}`, "success");
+              setActualizar(!actualizar);
+
+            }
+
           })
           .catch((err) => {
             Swal.fire({

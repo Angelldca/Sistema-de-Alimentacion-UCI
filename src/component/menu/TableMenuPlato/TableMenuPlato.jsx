@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 function TableMenuPlato({getChekbox}) {
   const [result, setDataResult] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  
+  const [actualizar, setActualizar] = useState(false);
   useEffect(() => {
     fetch("http://localhost:8080/plato")
       .then((data) => data.json())
@@ -15,7 +15,7 @@ function TableMenuPlato({getChekbox}) {
         setDataResult(data);
         setIsLoading(false);
       });
-  });
+  },[actualizar]);
 
 
   if (isLoading) {
