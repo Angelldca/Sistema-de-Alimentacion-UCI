@@ -15,7 +15,7 @@ export const generarListaMenuXfehca = (menu=[])=>{
  
   const arr = [];
  
-  console.log("Este es el menu " + menu);
+ 
   if(menu.length === 0)
       return arr;
     
@@ -35,7 +35,7 @@ export const generarListaMenuXfehca = (menu=[])=>{
          
           return obj;
         }, {});
-      // console.log(menuXfecha)
+     
        for (let prop in menuXfecha) {
         arr.push(menuXfecha[prop])
        }
@@ -57,5 +57,5 @@ const orderArray = (array = [])=>{
     });
   });
   
-  console.log(array);
+ 
 }

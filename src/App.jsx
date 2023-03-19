@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 
 import "./App.css";
 
@@ -13,7 +13,7 @@ import PlatoView from "./component/Plato/PlatoView";
 import HomeAdmin from "./component/Home/Home";
 import Login from "./component/Login/Login";
 
-import { Outlet, Navigate, redirect } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import ListarMenu from "./component/menu/ListarMenu";
 import ActualizarMenu from "./component/menu/ActualizarMenu";
 import SignUp from "./component/SignUp/SignUp";
@@ -21,8 +21,10 @@ import UserState from "./contexts/userState";
 import FacturaContainer from "./component/factura/facturaContainer";
 import FacturaContainerUser from "./component/factura/facturaContainerUser";
 import ProtecteRoute from "./component/Protecte/ProtecteRoute"
+import UserPanel from "./component/UserPanel/UserPanel";
+import ListarMenuUsuario from "./component/UserPanel/ListarMenuUsuario";
 function App() {
-  const [platos, setPlatos] = useState();
+
 
   const router = createBrowserRouter([
     {
@@ -35,7 +37,7 @@ function App() {
           element: <Admin_Panel />,
           children: [
             {
-              path: "homeAdmin",
+              path: "",
               element: <HomeAdmin />,
             },
             {
@@ -67,7 +69,7 @@ function App() {
             {
               path: "plato",
               element: <Plato />,
-            }, //platosview
+            }, 
             {
               path: "plato/platosview",
               element: <PlatoView />,
@@ -76,7 +78,21 @@ function App() {
         },
         {
           path: "user",
-          element: <h1>Pannel de usuario</h1>,
+          element: <UserPanel/>,
+          children:[
+            {
+              path: "",
+              element: <ListarMenuUsuario />,
+            },
+            {
+              path: "misfacturas",
+              element: <FacturaContainerUser />,
+            },
+            {
+              path: "reserva",
+              element: <Reserva />,
+            },
+          ]
         },
       ]
     },
@@ -98,6 +114,7 @@ function App() {
         <div className="App">
           <RouterProvider router={router} />
           <Outlet />
+          
         </div>
 
       </UserState>

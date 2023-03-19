@@ -8,7 +8,7 @@ function BreadcrumbMigas() {
   return (
     <Breadcrumb className="mt-2">
       {historial.map((path,index)=>(
-        <Breadcrumb.Item key={index} href={path}>
+        <Breadcrumb.Item active key={index} href={path}>
           {path.split("/")[path.split("/").length-1]}
           </Breadcrumb.Item>
       ))}

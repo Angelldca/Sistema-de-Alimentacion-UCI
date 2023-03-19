@@ -6,7 +6,7 @@ import './login.css'
 import { Link, useNavigate  } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import UserContext from '../../contexts/userContext';
-
+import Swal from 'sweetalert2'
 
 
 
@@ -33,7 +33,12 @@ function Login() {
             
         }
         else{
-            console.log("Rellene los campos")
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href="#">Why do I have this issue?</a>'
+              })
 
         }
       
@@ -52,9 +57,10 @@ function Login() {
                     name="username" 
                     placeholder="username" 
                     onChange={handleInputChange}
+                    required
                     />
                     <Form.Text className="text-muted">
-                        Preferiblemente use el correo de la UCI
+                        Usuario del correo uci
                      </Form.Text>
                 </Form.Group>
 
@@ -63,6 +69,7 @@ function Login() {
                     <Form.Control 
                     type="password"
                     name="password"
+                    required
                      placeholder="*********" 
                      onChange={handleInputChange}
                      />

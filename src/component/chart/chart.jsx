@@ -62,30 +62,44 @@ export const data = {
 };
 
 export function Chart({dtoPlatosFecha}) {
-  const [dataChart,setDataChart] = useState(data)
+  const [dataChart,setDataChart] = useState({
+    labels,
+    datasets: [
+      {
+        label: 'Reservas de platos por dias',
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //generateArr({count: 100, min: 0, max: 1000}),
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        pointStyle: 'circle',
+        pointRadius: 10,
+        pointHoverRadius: 15
+      },
+    ],
+  })
   useEffect(() => {
-       axios.post("http://localhost:8080/reserva/reservasFechaPlato",dtoPlatosFecha,{ 
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(response=>{
-        setDataChart({
-          ...dataChart,
-          datasets:[
-            {
-              ...data.datasets[0],
-              data: response.data
-              
-
-            }
-          ]
-
-        })
-      }).then(()=>{
-        console.log(dataChart)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
+        if(dtoPlatosFecha !== null){
+          axios.post("http://localhost:8080/reserva/reservasFechaPlato",dtoPlatosFecha,{ 
+            headers: { 'Content-Type': 'application/json' }
+          })
+          .then(response=>{
+            setDataChart({
+              ...dataChart,
+              datasets:[
+                {
+                  ...data.datasets[0],
+                  data: response.data
+                  
+    
+                }
+              ]
+    
+            })
+          })
+          .catch(err=>{
+            console.log(err)
+          })
+        }
+     
 
   }, [dtoPlatosFecha])
   return <Line options={options} data={dataChart} />;

@@ -12,12 +12,8 @@ function HomeAdmin() {
     actualizaHistorial(location.pathname.split("/"));
   },[])
 
-  const [dtoPlatosFecha, setdtoPlatosFechas]  = useState({
-    id_plato:"",
-    fechaInicio:"",
-    fechaFin:""
-  })
-   console.log(dtoPlatosFecha)
+  const [dtoPlatosFecha, setdtoPlatosFechas]  = useState(null)
+   
   return (
     <>
       <Info />

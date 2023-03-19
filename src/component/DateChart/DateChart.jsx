@@ -6,6 +6,11 @@ import axios from "axios";
 const FormDate =( {setdtoPlatosFechas})=> {
       const [platos, setPlatos] = useState([])
       const refForm = useRef(null)
+          
+    let fechaFormateada = new Date().getMonth()+1 > 10 ? `${new Date().getFullYear()}-${new Date().getMonth()+1}`
+    :`${new Date().getFullYear()}-0${new Date().getMonth()+1}`;
+
+    const [date, setDate] = useState(fechaFormateada);
       useEffect(()=>{
            
            axios.get("http://localhost:8080/plato")
@@ -13,21 +18,11 @@ const FormDate =( {setdtoPlatosFechas})=> {
              setPlatos(response.data);
            })   
       },[])
-      useEffect(()=>{
-        setdtoPlatosFechas({
-          id_plato:refForm.current.value,
-          fechaInicio:date,
-          fechaFin:date
-         })
-      },[])
-
-      
-    let fechaFormateada = new Date().getMonth()+1 > 10 ? `${new Date().getFullYear()}-${new Date().getMonth()+1}`
-    :`${new Date().getFullYear()}-0${new Date().getMonth()+1}`;
-
-    const [date, setDate] = useState(fechaFormateada);
+  
+  
     
    const handleChange=(e)=>{
+    
     setdtoPlatosFechas({
       id_plato:refForm.current.value,
       fechaInicio:date + '-01',
@@ -42,7 +37,9 @@ const FormDate =( {setdtoPlatosFechas})=> {
       aria-label="Default select example"
       ref={refForm}
       onChange={handleChange}
+      
       >
+         <option  value={0}>Seleccione un plato</option>
         {platos.map((plato,index)=>(
            <option key={index} value={plato.id_plato}>{plato.nombre_plato}</option>
         ))}

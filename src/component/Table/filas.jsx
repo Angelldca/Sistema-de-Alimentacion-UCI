@@ -95,7 +95,7 @@ export default function Filas({ plato, index, setActualizar, actualizar }) {
     // console.log(formData)
   };
   const sendUpdate = () => {
-    console.log("send update");
+    
     const options = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

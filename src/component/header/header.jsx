@@ -6,57 +6,68 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import { Outlet, Link, useLoaderData } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../header/header.css";
 import UserContext from "../../contexts/userContext";
-//import "../../img/angel.jpg"
+import { Button } from "react-bootstrap";
+
+
 const HeaderPrueba = (args) => {
-  const { user}  = useContext(UserContext);
+  const { user, logOutUser}  = useContext(UserContext);
+  const navigate = useNavigate()
+  const logOutClick =(e)=>{
+    logOutUser();
+    navigate('/')
+  }
   return (
     <div className="containerNavbar">
       <Navbar collapseOnSelect expand="lg" id="header" fixed="top">
         <Container>
-          <Navbar.Brand href="/admin" id="logo">
+          <Link to="/" id="logo">
             <p>SIGA</p>
-          </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="nav_header">
             <Nav className="mt-4" style={{ alignItems: "baseline" }}>
-              <Link to="/admin/reserva" bg="ligth">
+              <Link to="reserva" bg="ligth">
                 <p>Reserva</p>
               </Link>
               <NavDropdown title="Facturas" id="collasible-nav-dropdown">
-                <Link className="dropdown-item" to={`/admin/misfacturas`}>
+                <Link className="dropdown-item" to={`misfacturas`}>
                   <p className="dropdwon_items">Mis Factura</p>
                 </Link>
                 <NavDropdown.Divider />
-                <Link className="dropdown-item" to={`/admin/factura`}>
+                <Link className="dropdown-item" to={`factura`}>
                   <p className="dropdwon_items">Facturas</p>
                 </Link>
               </NavDropdown>
               <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                <Link className="dropdown-item" to={`/admin/menu`}>
+                <Link className="dropdown-item" to={`menu`}>
                   <p className="dropdwon_items">Crear Menu</p>
                 </Link>
                 <NavDropdown.Divider />
-                <Link className="dropdown-item" to={`/admin/menu/menuView`}>
+                <Link className="dropdown-item" to={`menu/menuView`}>
                   <p className="dropdwon_items">Listar Menu</p>
                 </Link>
               </NavDropdown>
               <NavDropdown title="Platos" id="collasible-nav-dropdown">
-                <Link className="dropdown-item" to={`/admin/plato`}>
+                <Link className="dropdown-item" to={`plato`}>
                   <p className="dropdwon_items">Crear Platos</p>
                 </Link>
                 <NavDropdown.Divider />
-                <Link className="dropdown-item" to={`/admin/plato/platosview`}>
+                <Link className="dropdown-item" to={`plato/platosview`}>
                   <p className="dropdwon_items">Listar</p>
                 </Link>
               </NavDropdown>
-              <Nav.Link href="#deets">
-                <p>Log out</p>
-              </Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
+              <Button 
+              variant="outline-light" 
+              style={{width:"100px", marginRight:"10px"}}
+              onClick={logOutClick}
+              >
+                Log out
+              </Button>
+              <Nav.Link eventKey={2} href="#">
                 <p>{user.username}</p>
               </Nav.Link>
             </Nav>

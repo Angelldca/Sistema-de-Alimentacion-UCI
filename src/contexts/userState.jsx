@@ -41,7 +41,7 @@ function UserState(props) {
           })
        .then(response => {
         //setData(response.data);
-        console.log(response.data)
+       
        dispatch({
            types: authUser,
            payload: response.data
@@ -51,6 +51,13 @@ function UserState(props) {
      console.log(error);
     });
      
+    }
+    const logOutUser = async (values)=>{
+       dispatch({
+           types: createUserDb,
+           payload: {}
+       })
+   
     }
 
 
@@ -62,7 +69,8 @@ function UserState(props) {
             historial: state.historial,
             createUser,
             autenticarUsuario,
-            actualizaHistorial
+            actualizaHistorial,
+            logOutUser
           }}>
           {props.children}
         </UserContext.Provider>

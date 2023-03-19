@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+
 import "./plato.css";
 import useFetchPost from "../../hooks/useFetchPost";
 
@@ -33,7 +33,7 @@ const CreatePlato = ()=> {
           body: JSON.stringify(dataPost)
         };
       const {data, isLoading, errorResult} = await useFetchPost("http://localhost:8080/plato/createPlato", options);
-      console.log(data)
+      
       if(data !== null){
         Swal.fire(
             'Plato creado!',
@@ -47,7 +47,7 @@ const CreatePlato = ()=> {
            
           })
       }
-      console.log("Error del post " + errorResult )
+     
       event.preventDefault();
       event.stopPropagation();
     }

@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
-import CardMenu from './Cards'
-import './cards.css'
-import { generarListaMenuXfehca } from '../../utils/Utils';
-import UserContext from '../../contexts/userContext';
-import { useLocation } from 'react-router-dom';
+import CardMenu from './CardMenu'
+import '../../cards/cards.css'
+import { generarListaMenuXfehca } from '../../../utils/Utils';
 
-const  CardContainer = ({reservar})=> {
+import { useLocation } from 'react-router-dom';
+import UserContext from '../../../contexts/userContext';
+
+const  CardContainer = ()=> {
   const {actualizaHistorial, historial}  = useContext(UserContext);
   const location = useLocation();
   
@@ -25,10 +26,10 @@ const  CardContainer = ({reservar})=> {
             
             setData(response)
             setIsLoading(false);
-            
+             
           })
           .catch(err=>{
-            
+            console.log(err);
             setMenuFecha([])
           })         
     },[actualizar])
@@ -37,7 +38,7 @@ const  CardContainer = ({reservar})=> {
       setMenuFecha(generarListaMenuXfehca(data));
     },[data])
    
-   
+   // console.log(menuFecha)
     
     if (isLoading || menuFecha.length ===0 ) {
         // ⬅️ si está cargando, mostramos un texto que lo indique
@@ -47,7 +48,7 @@ const  CardContainer = ({reservar})=> {
           </div>
         );
       }
-     
+
     return (
         <>
           <h3>Menu disponibles</h3>
@@ -55,12 +56,11 @@ const  CardContainer = ({reservar})=> {
               {menuFecha.map((menu,index)=>(
                
                <CardMenu 
-               reservar={reservar}
+              
                menu={menu} 
                index={index} 
                key={index} 
-               setActualizar={setActualizar} 
-               actualizar={actualizar} />
+               />
               ))}
             
               

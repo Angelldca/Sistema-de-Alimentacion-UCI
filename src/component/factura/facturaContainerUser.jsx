@@ -14,8 +14,7 @@ function FacturaContainerUser() {
             headers: { 'Content-Type': 'application/json' }
           })
        .then(response => {
-        //setData(response.data);
-       //     console.log(data)
+    
        setDataResult(response.data)
        setIsLoading(false)
       
@@ -24,6 +23,11 @@ function FacturaContainerUser() {
      console.log(error);
     });
       }, [actualizar]);
+      if(isLoading){
+        return(
+          <h3>No hay facturas disponibles</h3>
+        )
+      }
     return (
         <div>
             <TableFactura

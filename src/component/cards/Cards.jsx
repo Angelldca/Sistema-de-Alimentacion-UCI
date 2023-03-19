@@ -3,22 +3,22 @@ import Button from "react-bootstrap/Button";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { TfiWrite } from "react-icons/tfi";
-import { Outlet, Navigate, redirect, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./cards.css";
 import { useState, useContext } from "react";
 import CardBody from "./cardBody";
 import Swal from "sweetalert2";
 import moment from 'moment'
 import 'moment-timezone';
-import { useNavigate } from "react-router-dom";
+
 import UserContext from "../../contexts/userContext";
 import axios from "axios";
-function CardMenu({ reservar, menu, index, setActualizar, actualizar }) {
+function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
   
   const {user}  = useContext(UserContext);
   
   const [menuReserva, setMenuReserva] = useState([]);
-  const navigate = useNavigate();
+
   let now = new Date().toLocaleDateString("es-es", {
     weekday: "long",
     day: "numeric",
@@ -54,17 +54,26 @@ function CardMenu({ reservar, menu, index, setActualizar, actualizar }) {
         })
         .then(response => {
          //setData(response.data);
-           console.log("Reserva Creada "+ response)
+         Swal.fire(
+          'Reserva creada!',
+          `${response.data.fecha_reserva}`,
+          'success'
+        )
    
        })
      .catch(error => {
-       console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `${error}`,
+        footer: 'Algo salió mal'
+      })
      });
        
       });
 }
   
-   console.log(menuReserva)
+   
 }
 
 
@@ -117,7 +126,8 @@ function CardMenu({ reservar, menu, index, setActualizar, actualizar }) {
           </Card.Header>
           {menu.map((menu, index) => (
             <CardBody 
-
+            actualizar={actualizar}
+            setActualizar
             reservar={reservar} 
             menuReservar={menuReservar}
             menu={menu} 

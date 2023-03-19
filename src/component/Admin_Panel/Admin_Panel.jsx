@@ -13,20 +13,17 @@ import BreadcrumbMigas from '../migas/Breadcrumb';
 import Footer from '../footer/Footer';
 import './adminPanel.css'
 
-import { useNavigate } from 'react-router-dom';
+
 
 function Admin_Panel() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate('/protect/admin/homeAdmin');
-  }, []);
+
   return (
     <div  className="adminPanel">
       <HeaderPrueba/>
       <BreadcrumbMigas/>
-      <div className="content">
+       <div className="content">
         <Outlet/>
-      </div>
+       </div>
       
       <Footer className="footer"/>
     </div>
