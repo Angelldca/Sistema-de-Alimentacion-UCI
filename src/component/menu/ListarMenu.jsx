@@ -4,7 +4,7 @@ import CardContainer from '../cards/cardContainer'
 function ListarMenu() {
     return (
         <div> 
-            <CardContainer/>
+            <CardContainer reservar={false}/>
         </div>
     )
 }

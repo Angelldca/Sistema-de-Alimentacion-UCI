@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +12,7 @@ import {
 import { Line } from 'react-chartjs-2';
 //import faker from 'faker';
 import {generateArr} from '../../utils/Utils'
+import axios from 'axios';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -50,7 +51,7 @@ export const data = {
   datasets: [
     {
       label: 'Reservas de platos por dias',
-      data: [200,345,112,1000,456,987,345,22,546,754,633,12,323,453,34,456,567,234,22,123,234,456,645], //generateArr({count: 100, min: 0, max: 1000}),
+      data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //generateArr({count: 100, min: 0, max: 1000}),
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
       pointStyle: 'circle',
@@ -60,6 +61,32 @@ export const data = {
   ],
 };
 
-export function Chart() {
-  return <Line options={options} data={data} />;
+export function Chart({dtoPlatosFecha}) {
+  const [dataChart,setDataChart] = useState(data)
+  useEffect(() => {
+       axios.post("http://localhost:8080/reserva/reservasFechaPlato",dtoPlatosFecha,{ 
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(response=>{
+        setDataChart({
+          ...dataChart,
+          datasets:[
+            {
+              ...data.datasets[0],
+              data: response.data
+              
+
+            }
+          ]
+
+        })
+      }).then(()=>{
+        console.log(dataChart)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+
+  }, [dtoPlatosFecha])
+  return <Line options={options} data={dataChart} />;
 }

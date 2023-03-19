@@ -11,21 +11,24 @@ import { Outlet,Navigate, redirect } from "react-router-dom";
 import HeaderPrueba from '../header/header';
 import BreadcrumbMigas from '../migas/Breadcrumb';
 import Footer from '../footer/Footer';
-
+import './adminPanel.css'
 
 import { useNavigate } from 'react-router-dom';
 
 function Admin_Panel() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/admin/homeAdmin');
+    navigate('/protect/admin/homeAdmin');
   }, []);
   return (
-    <div style = {{minHeight:'600px'}}>
+    <div  className="adminPanel">
       <HeaderPrueba/>
       <BreadcrumbMigas/>
-       <Outlet/>
-      <Footer/>
+      <div className="content">
+        <Outlet/>
+      </div>
+      
+      <Footer className="footer"/>
     </div>
   );
 }

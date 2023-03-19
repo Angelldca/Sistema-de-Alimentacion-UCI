@@ -37,7 +37,7 @@ function ActualizarMenu() {
   return (
     <>
    
-      <h1>Hola menu actualizar</h1>
+      <h1>Actualizar Menu</h1>
       <div className="actualizarContainer">
         <CardMenuActualizar menu={state} chekboxs={chekboxs} evento={evento}/>
         <div  style={{width:"600px"}}>

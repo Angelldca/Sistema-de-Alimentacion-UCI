@@ -17,15 +17,13 @@ function CardBody({menu}) {
       setIdPlatos(nuevaLista)
     })
   },[])
-  const handlerEdit = (e)=>{
-          setEditar(!editar)
-  }
+
     return (
         <>
              <Card.Body>
             <Card.Title style={{display:"flex",justifyContent:"space-around"}}>
               {`${menu.evento}  ${menu.id_menu}`}
-              <Button variant="info" onClick={handlerEdit}>Editar</Button>
+             
             </Card.Title>
            
                 

@@ -1,31 +1,82 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import './login.css'
+import { Link, useNavigate  } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
+import UserContext from '../../contexts/userContext';
+
+
+
 
 function Login() {
-    const [state, setstate] = useState("nada")
+    let navigate = useNavigate();
+    const [formulario, setFormulario] = useState({
+        password:"",
+        username: "",
+      });
+      const  [ values, handleInputChange, reset ] = useForm(formulario)
+     const {autenticarUsuario, user}  = useContext(UserContext);
 
- const sendData = async (e)=>{
-    const  data = {
-        username:"angelldca",
-        password:"Al41677614**"
+      useEffect(()=>{
+          if(user.rol !== undefined){
+            navigate('/protect');
+          }
+      },[user])
+     
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if(values.password.length > 7 && values.username.length > 0){
+            await autenticarUsuario(values);
+            
+        }
+        else{
+            console.log("Rellene los campos")
+
+        }
+      
+        
     }
-  await fetch("https://soa-cas.uci.cu/cas/login?service=https%3A%2F%2Falimentacion.uci.cu%2Fsecurity%2Flogin_check",{
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-   .then(response => response.json())
-   .then((response) =>{
-       setstate(response)
-   })
- }
+ 
+
 
     return (
-        <div>
-            <h1>Este es el Login</h1>
-            <button onClick={sendData}>Login</button>
-            <div>{state}</div>
+        <div className="containerLogin">
+            <Form className="formulario" onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Usuario</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    name="username" 
+                    placeholder="username" 
+                    onChange={handleInputChange}
+                    />
+                    <Form.Text className="text-muted">
+                        Preferiblemente use el correo de la UCI
+                     </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control 
+                    type="password"
+                    name="password"
+                     placeholder="*********" 
+                     onChange={handleInputChange}
+                     />
+                </Form.Group>
+                <Form.Group className="mb-3 formLink" controlId="formBasicCheckbox">
+                    <Link to="/signUp">No tienes una cuenta ?</Link>
+                </Form.Group>
+                <Button variant="primary" type="submit" className="btnSubmit">
+                    Enviar
+               </Button>
+            </Form>
+
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

@@ -5,13 +5,19 @@ import { MdDeleteOutline } from "react-icons/md";
 import { TfiWrite } from "react-icons/tfi";
 import { Outlet, Navigate, redirect, Link} from "react-router-dom";
 import "./cards.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import CardBody from "./cardBody";
 import Swal from "sweetalert2";
 import moment from 'moment'
 import 'moment-timezone';
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../contexts/userContext";
+import axios from "axios";
 function CardMenu({ reservar, menu, index, setActualizar, actualizar }) {
+  
+  const {user}  = useContext(UserContext);
+  
+  const [menuReserva, setMenuReserva] = useState([]);
   const navigate = useNavigate();
   let now = new Date().toLocaleDateString("es-es", {
     weekday: "long",
@@ -25,14 +31,43 @@ function CardMenu({ reservar, menu, index, setActualizar, actualizar }) {
   const fechaNueva = objetoFecha.subtract(1, 'day');
   const fecha = fechaNueva.format("dddd, D [de] MMMM [de] YYYY");
 
+  const menuReservar = (m,cheksPlatos) => {
+    let newObj = menuReserva;
+    let indiceObjeto = newObj.findIndex(obj => obj.id_menu === m.id_menu);
 
-  
+    if (indiceObjeto !== -1) { 
+      newObj[indiceObjeto] = {id_menu:m.id_menu, id_platosMenu:cheksPlatos,usuarioReserva:user};
+      setMenuReserva(newObj)
+    }else{
 
-  const actualizarMenu = (e) => {
-    //navigate('menu/update');
-    //redirect("menu/update");
-    //window.location = "menu/update";
+      setMenuReserva([...menuReserva, {id_menu:m.id_menu, id_platosMenu:cheksPlatos,usuarioReserva:user}])
+    }
+    
   };
+  const handlerReservar =async (event)=>{
+    
+    
+    if(menuReserva.length > 0){
+      menuReserva.forEach((reserva)=>{
+         axios.post('http://localhost:8080/reserva/createReserva',reserva,{ 
+          headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+         //setData(response.data);
+           console.log("Reserva Creada "+ response)
+   
+       })
+     .catch(error => {
+       console.log(error);
+     });
+       
+      });
+}
+  
+   console.log(menuReserva)
+}
+
+
   const deleteMenus = (event) => {
     //http://localhost:8080/menu/deleteMenu/id
     Swal.fire({
@@ -67,34 +102,43 @@ function CardMenu({ reservar, menu, index, setActualizar, actualizar }) {
       }
     });
   };
+
+
+
   if (reservar === true) {
     return (
       <div className="m-2 cards">
-        <Card border="primary" className="cardMenu">
-          <Card.Header>
+         <Card border="primary" className="cardMenu" style={{ height: "690px" }}>
+          <Card.Header style={{ display: "flex", maxHeight: "58px" }}>
             {`${
+              // JSON.stringify(menu)
               fecha
             }`}
           </Card.Header>
-          <Card.Body>
-            <Card.Title style={{ textDecorationLine: "underline" }}>
-              {menu.evento}
-            </Card.Title>
-            <Card.Text>
-              {menu.id_plato.map((id_plato, index) => (
-                <>
-                  <span>{id_plato} </span>
-                  <span> $0.34 </span>
-                  <input key={id_plato} type="checkbox" />
-                  <br />
-                </>
-              ))}
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <Button>Reservar</Button>
+          {menu.map((menu, index) => (
+            <CardBody 
+
+            reservar={reservar} 
+            menuReservar={menuReservar}
+            menu={menu} 
+            key={index}>
+
+            </CardBody>
+          ))}
+          <Card.Footer
+            style={{ display: "flex", justifyContent: "space-around" }}
+          >
+            <Button
+              
+              style={{ display: "flex", justifyContent: "space-around" }}
+              onClick={handlerReservar}
+            >
+              Reservar
+            </Button>
+        
           </Card.Footer>
         </Card>
+        <br />
       </div>
     );
   } else {

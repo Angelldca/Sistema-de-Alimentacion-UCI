@@ -1,9 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import CardMenu from './Cards'
 import './cards.css'
 import { generarListaMenuXfehca } from '../../utils/Utils';
+import UserContext from '../../contexts/userContext';
+import { useLocation } from 'react-router-dom';
 
 const  CardContainer = ({reservar})=> {
+  const {actualizaHistorial, historial}  = useContext(UserContext);
+  const location = useLocation();
+  
+  useEffect(()=>{
+    actualizaHistorial(location.pathname.split("/"));
+  },[location])
+
     const [data,setData] =useState();
     const [menuFecha,setMenuFecha] =useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +55,7 @@ const  CardContainer = ({reservar})=> {
               {menuFecha.map((menu,index)=>(
                
                <CardMenu 
-               reservar={reservar} 
+               reservar={reservar}
                menu={menu} 
                index={index} 
                key={index} 

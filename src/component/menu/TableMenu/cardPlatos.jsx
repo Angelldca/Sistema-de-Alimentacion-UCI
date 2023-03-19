@@ -25,11 +25,6 @@ function CardPlatos({ plato, editar, idPlatos, setIdPlatos }) {
      
       <span className="me-2 " >{`$ ${plato.precio_plato}`  }</span>
      
-      {
-     
-        editar ?   <input type="checkbox" defaultChecked="true" onChange={handleCheckboxChange} />:
-        <input type="checkbox" defaultChecked="true" onChange={handleCheckboxChange} hidden/>
-      }
       <br/>
   
     </>
