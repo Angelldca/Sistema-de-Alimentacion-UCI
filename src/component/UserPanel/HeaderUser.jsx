@@ -12,6 +12,8 @@ import "../header/header.css";
 import UserContext from "../../contexts/userContext";
 import { Button } from "react-bootstrap";
 
+
+
 function HeaderUser() {
     const { user, logOutUser}  = useContext(UserContext);
     const navigate = useNavigate()
@@ -24,8 +26,8 @@ function HeaderUser() {
         <div className="containerNavbar">
             <Navbar collapseOnSelect expand="lg" id="header" fixed="top">
         <Container>
-         <Link className="dropdown-item" to="" bg="ligth" style={{fontSize:"50px",width:"auto"}}>
-                <p>SIGA</p>
+         <Link className="dropdown-item" to="" bg="ligth" id="logo">
+            <p>SIGA</p>
          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="nav_header">

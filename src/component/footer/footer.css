@@ -1,9 +1,51 @@
 
-
+/*#D1B446*/
 
 .footer{
     background-color: #025f86;
     width: auto;
-    height: 200px;
+    height: auto;
+    padding: 20px 0;
+    text-align: center;
+    
+}
+.enlaces{
+    margin-bottom: 15px;
+}
+
+.enlaces a{
+    margin: 40px;
+}
+
+.informacion {
+    display: flex;
+    justify-content: center;
+}
+.informacion p{
+    color: white;
+    margin: 10px;
+}
+
+.copy p{
+    color: white;
+}
+.copy {
+    margin-top: 10px ;
+}
+.informacion p:hover{
+    cursor: pointer;
+    color: #CECAB4
+   
+}
+.enlacesicon {
+    width: 30px;
+    height: 30px;
+}
+.enlacesicon:hover{
+    cursor: pointer;
+    color: #CECAB4
+}
+.informacion div {
+    border-right: 1px solid #ccc;
     
 }

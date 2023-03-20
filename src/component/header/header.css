@@ -7,21 +7,22 @@
       height: 80px;
       width: 100%;
       background-color: #025f86; 
+     
   }
 
   #logo{
       color: white;
       font-size: 50px;
   }
-  #header  a{
+  #header  a  {
       color: white;
+      text-decoration: none;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       margin-right: 50px;
     
   }
-  #header  a :hover{
-    color: rgb(190, 207, 29);
-    text-decoration-line: underline;
+#logo :hover{
+    color: #CECAB4
   
 }
 .nav_header{
