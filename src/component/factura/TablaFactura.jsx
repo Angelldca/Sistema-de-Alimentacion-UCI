@@ -24,7 +24,7 @@ function TableFactura({isLoading, facturas, actualizar, setActualizar}) {
             <th>Estado</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Opciones</th>
+            <th>Exportar PDF</th>
           </tr>
         </thead>
         <tbody>

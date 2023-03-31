@@ -7,14 +7,12 @@ import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import "../Plato/plato.css";
 import React from "react";
+import { formatFechaES } from "../../utils/Utils";
 
 
 export default function FilasFactura({ factura, index }) {
-    
-    const objetoFecha = moment(`${factura.reserva.fecha_reserva}`, 'YYYY-MM-DD');
-    
-    const fechaNueva = objetoFecha.subtract(1, 'day');
-    const fecha = fechaNueva.format("dddd, D [de] MMMM [de] YYYY");
+ 
+    const fecha = formatFechaES(`${factura.reserva.fecha_reserva}`);
     const exportPdf = (e)=>{
         console.log("Exportar")
         fetch('http://localhost:8080/factura/exportPdf', {

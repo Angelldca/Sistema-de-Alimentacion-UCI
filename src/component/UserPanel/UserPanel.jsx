@@ -8,7 +8,7 @@ function UserPanel() {
     return (
         <div className="userPanel">
             <HeaderUser/>
-            <BreadcrumbMigas/>
+           
             <div className="content">
             <Outlet/>
             </div>

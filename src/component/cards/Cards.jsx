@@ -13,6 +13,7 @@ import 'moment-timezone';
 
 import UserContext from "../../contexts/userContext";
 import axios from "axios";
+import { formatFechaES } from "../../utils/Utils";
 function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
   
   const {user}  = useContext(UserContext);
@@ -29,7 +30,7 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
 
   const objetoFecha = moment(`${menu[0].fecha}`, 'YYYY-MM-DD');
   const fechaNueva = objetoFecha.subtract(1, 'day');
-  const fecha = fechaNueva.format("dddd, D [de] MMMM [de] YYYY");
+  const fecha =   formatFechaES(`${menu[0].fecha}`)  //fechaNueva.format("dddd, D [de] MMMM [de] YYYY");
 
   const menuReservar = (m,cheksPlatos) => {
     let newObj = menuReserva;
@@ -62,17 +63,19 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
    
        })
      .catch(error => {
+       
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `${error}`,
+        text: `${error.response.data.message}`,
         footer: 'Algo salió mal'
       })
      });
        
       });
 }
-  
+    setMenuReserva([]);
+    setActualizar(!actualizar);
    
 }
 
@@ -97,7 +100,7 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
             .then((response) => response.json())
             .then((response) => {
               console.log(response);
-              Swal.fire("Eliminado!", `${response}`, "success");
+              Swal.fire("Eliminado!", `${response.fecha}`, "success");
               setActualizar(!actualizar);
             })
             .catch((err) => {
@@ -131,8 +134,9 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
             reservar={reservar} 
             menuReservar={menuReservar}
             menu={menu} 
+            setMenuReserva
             key={index}>
-
+            
             </CardBody>
           ))}
           <Card.Footer
@@ -175,7 +179,7 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
               style={{ display: "flex", justifyContent: "space-around" }}
              
             >
-              <Link to={`/admin/menu/update`} state={menu}>
+              <Link to={`/protect/admin/menu/update`} state={menu}>
                 <TfiWrite />
               </Link>
             </Button>

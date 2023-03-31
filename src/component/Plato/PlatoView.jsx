@@ -18,7 +18,7 @@ export default function PlatoView() {
          
         </Form.Select>
       </div>
-      <div className="col-8 m-3 containerTablePlato">
+      <div className="col-10 m-3 containerTablePlato">
         <TableGeneral />
       </div>
 

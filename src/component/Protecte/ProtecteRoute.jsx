@@ -6,7 +6,7 @@ function ProtecteRoute({children}) {
     const navigate = useNavigate();
     const {user}  = useContext(UserContext);
     useEffect(()=>{
-        if(user.rol !== undefined)
+        if(user.id_usuario !== undefined)
           if(user.rol.rolStatus ==="ADMIN_ROL"){
             navigate('/protect/admin');
           }else{

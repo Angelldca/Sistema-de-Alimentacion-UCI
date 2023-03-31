@@ -23,6 +23,7 @@ import FacturaContainerUser from "./component/factura/facturaContainerUser";
 import ProtecteRoute from "./component/Protecte/ProtecteRoute"
 import UserPanel from "./component/UserPanel/UserPanel";
 import ListarMenuUsuario from "./component/UserPanel/ListarMenuUsuario";
+import ListarMenuTodos from "./component/menu/ListarMenuTodos";
 function App() {
 
 
@@ -47,6 +48,11 @@ function App() {
             {
               path: "menu/menuView",
               element: <ListarMenu />,
+    
+            },
+            {
+              path: "menu/menuViewTodos",
+              element: <ListarMenuTodos />,
     
             },
             {

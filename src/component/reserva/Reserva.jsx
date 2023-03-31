@@ -1,6 +1,7 @@
 import React from 'react'
 import CardContainer from '../cards/cardContainer'
 
+
 function Reserva() {
     return (
         <div>
@@ -8,6 +9,7 @@ function Reserva() {
       <hr />
       <div>
           <CardContainer reservar={true}/>
+         
       </div>
       {/*
       

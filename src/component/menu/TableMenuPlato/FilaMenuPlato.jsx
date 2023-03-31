@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import {AiOutlineDelete} from "react-icons/ai"
+
+
 function FilaMenuPlato({plato,index, getChekbox}) {
   
   const handleCheckboxChange =  (event) => {

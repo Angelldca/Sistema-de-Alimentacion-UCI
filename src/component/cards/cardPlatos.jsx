@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Card from "react-bootstrap/Card";
-function CardPlatos({ plato, reservar, getChekbox }) {
+function CardPlatos({ plato, reservar, getChekbox,actualizar}) {
+  const checkboxRef = useRef(null);
+  useEffect(()=>{
+    if( checkboxRef.current !== null)
+    checkboxRef.current.checked = false
+  },[actualizar])
 
   const handleCheckboxChange =  (event) => {
     const { checked } = event.target;
@@ -15,7 +20,7 @@ function CardPlatos({ plato, reservar, getChekbox }) {
         <span className="me-2">{`${plato.gramaje}`} </span>
        
         <span className="me-2">{`$ ${plato.precio_plato}`}</span>
-        <input type="checkbox" onChange={handleCheckboxChange}/>
+        <input type="checkbox" name="check" ref={checkboxRef} onChange={handleCheckboxChange}/>
         <br/>
       </>
     );

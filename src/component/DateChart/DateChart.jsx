@@ -26,7 +26,7 @@ const FormDate =( {setdtoPlatosFechas})=> {
     setdtoPlatosFechas({
       id_plato:refForm.current.value,
       fechaInicio:date + '-01',
-      fechaFin:date + '-31'
+      fechaFin:date + '-32'
      })
    }
 
@@ -56,7 +56,7 @@ const FormDate =( {setdtoPlatosFechas})=> {
                     setdtoPlatosFechas({
                       id_plato:refForm.current.value,
                       fechaInicio:e.target.value + '-01',
-                      fechaFin:e.target.value + '-31'
+                      fechaFin:e.target.value + '-32'
                      })
                 }}
                 

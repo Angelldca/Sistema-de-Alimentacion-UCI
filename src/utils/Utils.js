@@ -59,3 +59,10 @@ const orderArray = (array = [])=>{
   
  
 }
+
+
+export const formatFechaES = (fecha)=>{
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const newfecha  = new Date(fecha).toLocaleString('es-ES',options)
+  return newfecha;
+}

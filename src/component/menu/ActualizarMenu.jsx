@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import Form from "react-bootstrap/Form";
 import { useLocation } from "react-router-dom";
 
@@ -9,10 +9,10 @@ function ActualizarMenu() {
     const eventoRef = useRef(null);
     const [chekboxs, setChekboxs] = useState([]);
     const [evento, setEvento] = useState("Desayuno");
+    let { state } = useLocation();
+    const [menu, setMenu] = useState(state);
+
    
-      let { state } = useLocation();
-
-
   function getChekbox (chek) {
         if(!chekboxs.includes(chek)){
             setChekboxs([...chekboxs,chek]);
@@ -22,24 +22,17 @@ function ActualizarMenu() {
             setChekboxs(filteredLibraries);
             
         }
-       // console.log(chekboxs)
-
-       /*
-        const handleCheckboxChange =  (event) => {
-      const { checked } = event.target;
-      getChekbox(plato.id_plato)
-     
-  }
-       
-       */
-        
       }
   return (
     <>
    
       <h1>Actualizar Menu</h1>
       <div className="actualizarContainer">
-        <CardMenuActualizar menu={state} chekboxs={chekboxs} evento={evento}/>
+        <CardMenuActualizar 
+        menu={menu} 
+         chekboxs={chekboxs} 
+         setMenu={setMenu} 
+         evento={evento}/>
         <div  style={{width:"600px"}}>
           <Form.Group controlId="duedate">
             <Form.Select
@@ -48,12 +41,14 @@ function ActualizarMenu() {
               ref={eventoRef}
               onChange={(e)=>{
                   setEvento(eventoRef.current.value)
-                  console.log(evento)
+                  
               }}
             >
-              <option defaultValue="Desayuno">Desayuno</option>
-              <option defaultValue="Almuerzo">Almuerzo</option>
-              <option defaultValue="Comida">Comida</option>
+              {state.map((menu,index)=>(
+                <option defaultValue={menu.evento} key={index}>{menu.evento}</option>
+              ))}
+              
+             
             </Form.Select>
           </Form.Group>
           <ListarPlatosMenu getChekbox={getChekbox}/>

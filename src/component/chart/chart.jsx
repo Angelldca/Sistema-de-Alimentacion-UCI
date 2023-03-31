@@ -31,12 +31,12 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Line Chart',
+      text: 'Grafica de Reservas por dias',
     },
   },
 };
 
-const day = generateArr({count: 1, min: 1, max: 31});
+const day = generateArr({count: 1, min: 1, max: 32});
 const labels = day.map((day)=> "Day "+ day);
 /*
    {

@@ -47,8 +47,11 @@ const HeaderPrueba = (args) => {
                   <p className="dropdwon_items">Crear Menu</p>
                 </Link>
                 <NavDropdown.Divider />
-                <Link className="dropdown-item" to={`menu/menuView`}>
+                <Link className="dropdown-item" to={`menu/menuViewTodos`}>
                   <p className="dropdwon_items">Listar Menu</p>
+                </Link>
+                <Link className="dropdown-item" to={`menu/menuView`}>
+                  <p className="dropdwon_items">Listar Menu disponibles</p>
                 </Link>
               </NavDropdown>
               <NavDropdown title="Platos" id="collasible-nav-dropdown">

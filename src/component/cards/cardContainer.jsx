@@ -5,7 +5,7 @@ import { generarListaMenuXfehca } from '../../utils/Utils';
 import UserContext from '../../contexts/userContext';
 import { useLocation } from 'react-router-dom';
 
-const  CardContainer = ({reservar})=> {
+const  CardContainer = ({reservar, todos})=> {
   const {actualizaHistorial, historial}  = useContext(UserContext);
   const location = useLocation();
   
@@ -18,19 +18,35 @@ const  CardContainer = ({reservar})=> {
     const [isLoading, setIsLoading] = useState(true);
     const [actualizar, setActualizar] = useState(false);
     useEffect(()=>{
+      if(!todos){
+        fetch("http://localhost:8080/menu")
+        .then((response)=> response.json())
+        .then((response) =>{
+          
+          setData(response)
+          setIsLoading(false);
+          
+        })
+        .catch(err=>{
+          
+          setMenuFecha([])
+        })
+      }else{
+        fetch("http://localhost:8080/menu/todos")
+        .then((response)=> response.json())
+        .then((response) =>{
+          
+          setData(response)
+          setIsLoading(false);
+          
+        })
+        .catch(err=>{
+          
+          setMenuFecha([])
+        })
+      }
       
-          fetch("http://localhost:8080/menu")
-          .then((response)=> response.json())
-          .then((response) =>{
-            
-            setData(response)
-            setIsLoading(false);
-            
-          })
-          .catch(err=>{
-            
-            setMenuFecha([])
-          })         
+                  
     },[actualizar])
     useEffect(()=>{
        

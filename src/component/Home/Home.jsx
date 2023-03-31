@@ -5,6 +5,7 @@ import CardContainer from "../cards/cardContainer";
 import FormDate from "../DateChart/DateChart";
 import UserContext from "../../contexts/userContext";
 import { useLocation } from 'react-router-dom';
+import ControlledCarousel from "../carousel/carousel";
 function HomeAdmin() {
   const {actualizaHistorial, historial}  = useContext(UserContext);
   const location = useLocation();
@@ -16,6 +17,7 @@ function HomeAdmin() {
    
   return (
     <>
+    {/*/<ControlledCarousel/>*/}
       <Info />
       <CardContainer />
       <FormDate setdtoPlatosFechas={setdtoPlatosFechas} />

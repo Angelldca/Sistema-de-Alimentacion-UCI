@@ -22,7 +22,7 @@ function CardBody({menu}) {
         <>
              <Card.Body>
             <Card.Title style={{display:"flex",justifyContent:"space-around"}}>
-              {`${menu.evento}  ${menu.id_menu}`}
+              {`${menu.evento}`}
              
             </Card.Title>
            

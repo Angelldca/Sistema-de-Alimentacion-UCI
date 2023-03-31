@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -9,14 +9,16 @@ import axios from 'axios';
 import { useForm } from '../../hooks/useForm';
 import UserContext from '../../contexts/userContext';
 import { useNavigate } from 'react-router-dom';
+import { validarContrasena, validarNombre, validarTexto } from '../../utils/validacion';
 
 
 
 function SignUp() {
     const [validated, setValidated] = useState(false);
-    const [data, setData] = useState([]);
+    const refPass = useRef(null)
     const [image, setImage] = useState(null);
     const [formData, setFormdata] = useState(null);
+
     const navigate =  useNavigate();
      const {user,createUser}  = useContext(UserContext);
     
@@ -62,15 +64,29 @@ function SignUp() {
         
        
        event.preventDefault();
-       
-         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }else{
-           await createUser(values)
-        }
+      
+       if(! validarContrasena(values.password)){
+        
+         alert("La contraseña debe ser minimo de 8 caractéres, contener al menos una letra y un digito")
+       }
+       else if(!validarNombre(values.nombre)){
+        alert("Los nombres deben comenzar con mayusculas y contener solo letras")
+       }else if(!validarTexto(values.username) || !validarTexto(values.categoria) || !validarTexto(values.apellidos)){
+        alert("Los campos username, categoria y apellidos deben contener solo letras")
+       }
+       else{
 
-        setValidated(true);
+           if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+          }else{
+             await createUser(values)
+             
+          }
+          setValidated(true);
+       }
+       
+    
     };
 
     return (
@@ -95,11 +111,12 @@ function SignUp() {
                             required
                             type="text"
                             name="apellidos"
+                            
                             placeholder="apellido"
                             onChange={handleInputChange}
 
                         />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        <Form.Control.Feedback>Listo!</Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="4" controlId="validationCustomUsername">
                         <Form.Label>Username</Form.Label>
@@ -114,7 +131,7 @@ function SignUp() {
                                 onChange={handleInputChange}
                             />
                             <Form.Control.Feedback type="invalid">
-                                Please choose a username.
+                                Por favor intruduce un username.
                             </Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
@@ -129,22 +146,23 @@ function SignUp() {
                         required 
                         onChange={handleInputChange}/>
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid city.
+                        Por favor intruduce un email.
                          </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                    <Form.Group as={Col} md="6" controlId="validationCustom04">
                         <Form.Label>Password</Form.Label>
                         <Form.Control 
                         type="password"
                         name="password" 
                         placeholder="password" 
+                        ref={refPass}
                         required 
                         onChange={handleInputChange}/>
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid city.
+                        <Form.Control.Feedback name="passErr" type="invalid">
+                            La contraseña debe poseer al menos 8 caractéres.
                          </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                    <Form.Group as={Col} md="6" controlId="validationCustom05">
                         <Form.Label>Categoria</Form.Label>
                         <Form.Control 
                         type="text"
@@ -154,10 +172,10 @@ function SignUp() {
                         onChange={handleInputChange}
                         />
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid city.
+                        Por favor intruduce una categoria.
                          </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                    <Form.Group as={Col} md="3" controlId="validationCustom06">
                         <Form.Label>Apartamento</Form.Label>
                         <Form.Control 
                         type="number"
@@ -167,10 +185,10 @@ function SignUp() {
                         onChange={handleInputChange}
                         />
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid state.
+                        Por favor intruduce un apartamento.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                    <Form.Group as={Col} md="3" controlId="validationCustom07">
                         <Form.Label>Edificio</Form.Label>
                         <Form.Control 
                         type="number"
@@ -180,10 +198,10 @@ function SignUp() {
                         onChange={handleInputChange}
                         />
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
+                        Por favor intruduce un edificio.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                    <Form.Group as={Col} md="3" controlId="validationCustom08">
                         <Form.Label>Solapin</Form.Label>
                         <Form.Control 
                         type="text" 
@@ -192,10 +210,10 @@ function SignUp() {
                         onChange={handleInputChange}
                         required />
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
+                        Por favor intruduce el solapin
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                    <Form.Group as={Col} md="3" controlId="validationCustom09">
                         <Form.Label>CI</Form.Label>
                         <Form.Control 
                         type="text" 
@@ -204,7 +222,7 @@ function SignUp() {
                         onChange={handleInputChange}
                         required />
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
+                        Por favor intruduce el carnet de ID.
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="position-relative mb-3">

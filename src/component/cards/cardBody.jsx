@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import CardPlatos from './cardPlatos';
 
 
-function CardBody({menu, reservar, menuReservar}) {
+function CardBody({menu, reservar, menuReservar, actualizar}) {
   const [chekboxs, setChekboxs] = useState([]); 
   
   function getChekbox (chek) {
@@ -22,6 +22,9 @@ function CardBody({menu, reservar, menuReservar}) {
       if(chekboxs.length > 0 )
       menuReservar(menu,chekboxs)
     },[chekboxs])
+    useEffect(()=>{
+     
+    },[])
     return (
         <>
              <Card.Body>
@@ -31,7 +34,7 @@ function CardBody({menu, reservar, menuReservar}) {
            
                 
              {menu.platos.map((plato,index)=>(
-                 <CardPlatos getChekbox={getChekbox} reservar={reservar} plato={plato} key={index}/>
+                 <CardPlatos actualizar={actualizar} getChekbox={getChekbox} reservar={reservar} plato={plato} key={index}/>
              ))}
 
             
