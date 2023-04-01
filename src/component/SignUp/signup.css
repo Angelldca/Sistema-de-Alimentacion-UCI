@@ -1,14 +1,134 @@
 
+.wave{
+  position: fixed;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+
+}
+.containerSign{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  padding:0 2rem;
+  justify-content: space-around;
+}
+.form-register { 
+
+  width: 450px;
+  padding: 25px;
+  margin: auto;
+  margin-top: 70px;
+  border-radius: 5px;
+  font-family: 'calibri';
+  color:rgb(23, 32, 110) ;
+  align-items: center;
+  text-align: center;
+  box-shadow:7px 13px 37px rgb(9, 8, 59);
+  position: fixed;
+
+}
 
 
-.containerSignup {
-    width: 600px;
-    height: 30%;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 100px;
-    overflow: hidden;
-   
+
+.form-register h4{
+  font-size: 22px;
+  margin-bottom: 20px;
   }
+
+
+.controls{
+  width: 100%;
+  background: rgba(232, 232, 250, 0.986) ;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid rgb(15, 7, 87);
+  font-family: 'calibri';
+  font-size: 18px;
+
+}
+
+.form-register p{
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.form-register a{
+  color:#333;
+  text-decoration: none;
+}
+.form-register a:hover{
+  color:rgb(83, 34, 219);
+  text-decoration: underline;
+}
+
+
+.botons{
+  width: 300px;
+  height: 49px;
+  border: none;
+  outline: none;
+  border-radius: 49px;
+  cursor: pointer;
+  background-color: #5995fd;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 10px 0;
+  transition: .5s;
+
+}
+
+.botons:hover{
+  background-color: #4d84e2;
+}
+
+
+@media screen and (max-width:1050px) {
+  .container{
+     grid-gap: 5rem; 
+  }
+  
+}
+
+@media screen and (max-width:1000px){
+form {
+      width: 290px;
+  }
+  form h4{
+      font-size: 2.4rem;
+      margin: 8px 0;
+  }
+  .img img{
+      width: 400px;
+  }
+} 
+
+@media screen and (max-width:900px){
+.img{
+  display: none;
+}
+.container{
+  grid-template-columns: 1fr;
+}
+.wave{
+  display:none;
+}
+.form-register {
+  justify-content:center ;
+}
+}
+.invalid{
+  border: 2px solid red;
+  width: 100%;
+  background: rgba(232, 232, 250, 0.986) ;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-family: 'calibri';
+  font-size: 18px;
+}

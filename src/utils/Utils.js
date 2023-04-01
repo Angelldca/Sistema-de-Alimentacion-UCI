@@ -46,6 +46,40 @@ export const generarListaMenuXfehca = (menu=[])=>{
 }
 
 
+export const generarListaMenuXfehcaReserva = (menu=[])=>{
+ 
+  const arr = [];
+ 
+ 
+  //if( menu === null) return arr;
+    if(menu.length === 0 ) return arr;
+      let menuXfecha =  menu.reduce(function(obj, item) {
+          if(!obj[item.fecha]) {
+            obj[item.fecha] = [];
+          }
+          obj[item.fecha].push({
+            id_menu: item.id_menu,
+            estado: item.estado,
+            fecha:item.fecha,
+            evento: item.evento,
+            platos: item.platos,
+            precio: item.precio,
+            id_platosMenu: item.id_platosMenu,
+            id_reserva: item.id_reserva
+          });
+
+         
+          return obj;
+        }, {});
+     
+       for (let prop in menuXfecha) {
+        arr.push(menuXfecha[prop])
+       }
+      
+        orderArray(arr);
+       
+        return arr;
+}
 
 const orderArray = (array = [])=>{
   

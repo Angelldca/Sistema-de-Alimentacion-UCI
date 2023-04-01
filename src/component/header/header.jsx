@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "../header/header.css";
 import UserContext from "../../contexts/userContext";
-import { Button } from "react-bootstrap";
+import { Button, NavItem } from "react-bootstrap";
 
 
 const HeaderPrueba = (args) => {
@@ -30,9 +30,25 @@ const HeaderPrueba = (args) => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="nav_header">
             <Nav className="mt-4" style={{ alignItems: "baseline" }}>
-              <Link to="reserva" bg="ligth">
-                <p>Reserva</p>
-              </Link>
+            
+                <Link className="dropdown-item opUsuario" to={`usuarios`}>
+                  <p className="dropdwon_items usuarios" style={{ color: "white" }}>Usuarios</p>
+                </Link>
+            
+
+            <NavDropdown title="Reserva" id="collasible-nav-dropdown">
+                <Link className="dropdown-item" to={`reservatodas`}>
+                  <p className="dropdwon_items">Listado de reservas</p>
+                </Link>
+                <NavDropdown.Divider />
+                <Link className="dropdown-item" to={`actualizarReserva`}>
+                  <p className="dropdwon_items">Mis reservas</p>
+                </Link>
+                <NavDropdown.Divider />
+                <Link className="dropdown-item" to={`reserva`}>
+                  <p className="dropdwon_items">Reservar</p>
+                </Link>
+              </NavDropdown>
               <NavDropdown title="Facturas" id="collasible-nav-dropdown">
                 <Link className="dropdown-item" to={`misfacturas`}>
                   <p className="dropdwon_items">Mis Factura</p>
@@ -63,18 +79,19 @@ const HeaderPrueba = (args) => {
                   <p className="dropdwon_items">Listar</p>
                 </Link>
               </NavDropdown>
-              <Button 
+            
+              <Link  to="actualizar">
+                <p>{user.username}</p>
+              </Link>
+            </Nav>
+            <Image rounded src="../../img/user.png" placeholder="img" style={{width:"50px"}}/>
+            <Button 
               variant="outline-light" 
-              style={{width:"100px", marginRight:"10px"}}
+              style={{width:"100px", marginRight:"0px", marginLeft:"10px"}}
               onClick={logOutClick}
               >
                 Log out
               </Button>
-              <Nav.Link eventKey={2} href="#">
-                <p>{user.username}</p>
-              </Nav.Link>
-            </Nav>
-            <Image rounded src="../../img/user.png" placeholder="img" style={{width:"50px"}}/>
           </Navbar.Collapse>
         </Container>
       </Navbar>

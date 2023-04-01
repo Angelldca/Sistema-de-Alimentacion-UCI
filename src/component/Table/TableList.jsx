@@ -2,16 +2,13 @@ import Table from "react-bootstrap/Table";
 //GrDocumentUpdate  RiDeleteBin5Line
 import React, { useState, useEffect } from "react";
 
-
-
-import useFetchGet from "../../hooks/useFetchGet";
 import Filas from "./filas";
 
 function TableGeneral(props) {
   const [dataResult, setDataResult] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [actualizar, setActualizar] = useState(false);
-  const [errorResult, setError] = useState();
+
 
   useEffect(() => {
     fetch("http://localhost:8080/plato")

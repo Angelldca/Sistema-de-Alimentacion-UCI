@@ -1,14 +1,21 @@
 
 
 export function validarTexto(input) {
-    const regex = /^[a-zA-Z]*$/;   // solo permite letras
+    const regex = /^[a-zA-Z]*$/;   // solo permite espacios
     return regex.test(input);
+  }
+ export function validarApellidos(apellido) {
+    const padrao = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+    return padrao.test(apellido);
   }
  export function validarNombre(nombre) { 
     const regex = /^[A-Z][a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
     return nombre.length > 0 && regex.test(nombre) ; // solo texto que empiecen con mayuscula && nombre.trim() === nombre
   }
-
+  export function validarEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  }
  export function validarContrasena(contrasena) {
     // Expresión regular para validar la contraseña
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;

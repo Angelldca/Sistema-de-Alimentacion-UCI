@@ -1,247 +1,187 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
+
 import './signup.css'
 import axios from 'axios';
 import { useForm } from '../../hooks/useForm';
 import UserContext from '../../contexts/userContext';
-import { useNavigate } from 'react-router-dom';
-import { validarContrasena, validarNombre, validarTexto } from '../../utils/validacion';
+import { useNavigate, Link } from 'react-router-dom';
+import { validarContrasena, validarNombre, validarTexto, validarApellidos, validarEmail } from '../../utils/validacion';
 
 
 
 function SignUp() {
     const [validated, setValidated] = useState(false);
     const refPass = useRef(null)
+    const refUsername = useRef(null)
+    const refNombre = useRef(null)
+    const refApellido = useRef(null)
+    const refCorreo = useRef(null)
+    const refCi = useRef(null)
     const [image, setImage] = useState(null);
-    const [formData, setFormdata] = useState(null);
 
-    const navigate =  useNavigate();
-     const {user,createUser}  = useContext(UserContext);
-    
-     useEffect(()=>{
-         if(user.rol !== undefined)
+
+    const navigate = useNavigate();
+    const { user, createUser } = useContext(UserContext);
+
+    useEffect(() => {
+        if (user.rol !== undefined)
             navigate('/protect');
-     },[user])
+    }, [user])
 
     const [formulario, setFormulario] = useState({
         nombre: "",
         apellidos: "",
-        ci:"",
+        ci: "",
         edificio: "",
         apto: "",
-        password:"",
-        categoria: "",
+        password: "",
+        categoria: "Estudiante",
         correo: "",
         username: "",
-        solapin: "",
-        rol:{
-            id_rol:2,
-            rolStatus:"USER_ROL"
+        solapin: "E2343",
+        estado:"ACTIVO",
+        rol: {
+            id_rol: 2,
+            rolStatus: "USER_ROL"
         },
-        imagen:null
-      });
- 
-     const  [ values, handleInputChange, reset ] = useForm(formulario)
-     
-    const handleImageChange = (e) => {
-        const selectedImage = e.target.files[0];
-        setImage(selectedImage);
-        console.log(image)
-      };
+        imagen: null
+    });
 
-      const prueba = async ()=>{
-        const fd = new FormData();
-        fd.append('file', image);
-       // fd.append('user', JSON.stringify(formulario));
-         setFormdata(fd);
-      }
+    const [values, handleInputChange, reset] = useForm(formulario)
+
+  
+
+
     const handleSubmit = async (event) => {
         const form = event.currentTarget;
         
-       
-       event.preventDefault();
-      
-       if(! validarContrasena(values.password)){
-        
-         alert("La contraseña debe ser minimo de 8 caractéres, contener al menos una letra y un digito")
-       }
-       else if(!validarNombre(values.nombre)){
-        alert("Los nombres deben comenzar con mayusculas y contener solo letras")
-       }else if(!validarTexto(values.username) || !validarTexto(values.categoria) || !validarTexto(values.apellidos)){
-        alert("Los campos username, categoria y apellidos deben contener solo letras")
-       }
-       else{
 
-           if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-          }else{
-             await createUser(values)
-             
-          }
-          setValidated(true);
-       }
-       
-    
+        event.preventDefault();
+        let validar = true;
+        if(!validarNombre(values.nombre)){
+            refNombre.current.className = 'invalid';
+              validar = false
+        }else{
+            refNombre.current.className = 'controls';
+        }
+            
+        if(!validarEmail(values.correo)){
+           refCorreo.current.className = 'invalid';
+           validar = false
+        }
+        else{
+            refCorreo.current.className = 'controls';
+        }
+        if(!validarTexto(values.username)|| values.username.length === 0){
+           refUsername.current.className = 'invalid';
+           validar = false
+        }else{
+           refUsername.current.className = 'controls';
+        }
+        if(!validarApellidos(values.apellidos)){
+           refApellido.current.className = 'invalid';
+           validar = false
+        }else{
+            refApellido.current.className = 'controls';
+        }
+        if(!validarContrasena(values.password)){
+            refPass.current.className = 'invalid';
+            validar = false
+         }else{
+            refPass.current.className = 'controls';
+         }
+         if(!(values.ci.length === 11) ){
+            refCi.current.className = 'invalid';
+            validar = false
+         }else{
+            refCi.current.className = 'controls';
+         }
+        if(!validar){
+            console.log("dasdasdas")
+        }
+        else {
+                await createUser(values)
+                navigate('/protect');
+           }
+
+
     };
 
     return (
-        <div className="containerSignup">
+        <div className="containerSign">
+            <div>
+                <img className="wave" src="./img/q.png" alt="foto" />
+            </div>
+            <form className="form-register" onSubmit={handleSubmit}>
+                <h4>Registre su Usuario</h4>
+                <input
+                    className="controls"
+                    type="text"
+                    name="nombre" 
+                    id="nombres"
+                     placeholder="Ingrese su Nombre"
+                     onChange={handleInputChange}
+                     ref={refNombre}
+                />
+                <input
+                    className="controls"
+                    type="text"
+                    name="apellidos"
+                    id="apellidos"
+                    placeholder="Ingrese sus Apellidos"
+                    onChange={handleInputChange}
+                    ref={refApellido}
+                />
+                <input
+                    className="controls"
+                    type="text"
+                    name="username"
+                    id="usuario"
+                    placeholder="Ingrese un Usuario"
+                    onChange={handleInputChange}
+                    ref={refUsername}
+                />
 
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <Row className="mb-3">
-                    <Form.Group as={Col} md="4" controlId="validationCustom01">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            name="nombre"
-                            placeholder="nombre"
-                            onChange={handleInputChange}
-                        />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom02">
-                        <Form.Label>Apellido</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            name="apellidos"
-                            
-                            placeholder="apellido"
-                            onChange={handleInputChange}
+                <input
+                    className="controls"
+                    type="email"
+                    name="correo"
+                    id="correo"
+                    placeholder="Ingrese su Correo"
+                    onChange={handleInputChange}
+                    ref={refCorreo}
+                />
+                <input
+                    className="controls"
+                    type="number"
+                    name="ci"
+                    id="carnet"
+                    placeholder="Ingrese su CI"
+                    onChange={handleInputChange}
+                    ref={refCi}
+                />
+                <input
+                    className="controls"
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Ingrese una Contraseña"
+                    onChange={handleInputChange}
+                    ref={refPass}
+                />
 
-                        />
-                        <Form.Control.Feedback>Listo!</Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                        <Form.Label>Username</Form.Label>
-                        <InputGroup hasValidation>
-                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                            <Form.Control
-                                type="text"
-                                name="username"
-                                placeholder="Username"
-                                aria-describedby="inputGroupPrepend"
-                                required
-                                onChange={handleInputChange}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Por favor intruduce un username.
-                            </Form.Control.Feedback>
-                        </InputGroup>
-                    </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                        <Form.Label>correo uci</Form.Label>
-                        <Form.Control 
-                        type="email"
-                        name="correo" 
-                        placeholder="correo" 
-                        required 
-                        onChange={handleInputChange}/>
-                        <Form.Control.Feedback type="invalid">
-                        Por favor intruduce un email.
-                         </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationCustom04">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control 
-                        type="password"
-                        name="password" 
-                        placeholder="password" 
-                        ref={refPass}
-                        required 
-                        onChange={handleInputChange}/>
-                        <Form.Control.Feedback name="passErr" type="invalid">
-                            La contraseña debe poseer al menos 8 caractéres.
-                         </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationCustom05">
-                        <Form.Label>Categoria</Form.Label>
-                        <Form.Control 
-                        type="text"
-                        name="categoria" 
-                        placeholder="Categoria" 
-                        required 
-                        onChange={handleInputChange}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                        Por favor intruduce una categoria.
-                         </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom06">
-                        <Form.Label>Apartamento</Form.Label>
-                        <Form.Control 
-                        type="number"
-                        name="apto" 
-                        placeholder="Apartamento" 
-                        required 
-                        onChange={handleInputChange}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                        Por favor intruduce un apartamento.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom07">
-                        <Form.Label>Edificio</Form.Label>
-                        <Form.Control 
-                        type="number"
-                        name="edificio" 
-                        placeholder="edificio" 
-                        required 
-                        onChange={handleInputChange}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                        Por favor intruduce un edificio.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom08">
-                        <Form.Label>Solapin</Form.Label>
-                        <Form.Control 
-                        type="text" 
-                        name="solapin"
-                        placeholder="Solapin" 
-                        onChange={handleInputChange}
-                        required />
-                        <Form.Control.Feedback type="invalid">
-                        Por favor intruduce el solapin
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom09">
-                        <Form.Label>CI</Form.Label>
-                        <Form.Control 
-                        type="text" 
-                        name="ci"
-                        placeholder="CI" 
-                        onChange={handleInputChange}
-                        required />
-                        <Form.Control.Feedback type="invalid">
-                        Por favor intruduce el carnet de ID.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="position-relative mb-3">
-                        <Form.Label>Selecciona una foto de perfil</Form.Label>
-                        <Form.Control
-                            type="file"
-                            name="file"
-                            onChange={handleImageChange}
-                            //isInvalid={!!errors.file}
-                            //onChange={handleChange}
-                        />
-                        
-                    </Form.Group>
-                </Row>
-               
-                <Button type="submit">Enviar</Button>
-            </Form>
+                <input
+                    className="botons"
+                    type="submit"
+                    value="Registrar" />
+                <div>
+
+                    <Link to="/">¿Ya tengo cuenta?</Link>
+                </div>
+            </form>
         </div>
     );
 }
+
 
 export default SignUp;

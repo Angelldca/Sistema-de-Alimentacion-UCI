@@ -4,3 +4,4 @@
 
   export const authUser = 'AUTENTICAR_USER'; 
   export const updateHis = "UPDATEHISTORIAL"
+  export const updateUser = "UPDATEUSER"

@@ -1,0 +1,14 @@
+
+
+.invalid{
+  border: 2px solid red !important;
+}
+.valid{
+    border: 2px solid #6bc59b !important;
+  }
+  .none{
+    border: none;
+  }
+  .active{
+      border: 1px solid #ccc;
+  }

@@ -20,28 +20,23 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
   
   const [menuReserva, setMenuReserva] = useState([]);
 
-  let now = new Date().toLocaleDateString("es-es", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
+ 
 
   const objetoFecha = moment(`${menu[0].fecha}`, 'YYYY-MM-DD');
   const fechaNueva = objetoFecha.subtract(1, 'day');
-  const fecha =   formatFechaES(`${menu[0].fecha}`)  //fechaNueva.format("dddd, D [de] MMMM [de] YYYY");
+  const fecha =   formatFechaES(`${menu[0].fecha}`)
 
   const menuReservar = (m,cheksPlatos) => {
     let newObj = menuReserva;
-    let indiceObjeto = newObj.findIndex(obj => obj.id_menu === m.id_menu);
+    let indiceObjeto = newObj.findIndex(obj => obj.menu.id_menu === m.id_menu);
 
     if (indiceObjeto !== -1) { 
-      newObj[indiceObjeto] = {id_menu:m.id_menu, id_platosMenu:cheksPlatos,usuarioReserva:user};
+      
+      newObj[indiceObjeto] = {menu:m, id_platosMenu:cheksPlatos,usuarioReserva:user};
       setMenuReserva(newObj)
     }else{
-
-      setMenuReserva([...menuReserva, {id_menu:m.id_menu, id_platosMenu:cheksPlatos,usuarioReserva:user}])
+     
+      setMenuReserva([...menuReserva, {menu:m, id_platosMenu:cheksPlatos,usuarioReserva:user}])
     }
     
   };
@@ -49,6 +44,7 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
     
     
     if(menuReserva.length > 0){
+      
       menuReserva.forEach((reserva)=>{
          axios.post('http://localhost:8080/reserva/createReserva',reserva,{ 
           headers: { 'Content-Type': 'application/json' }

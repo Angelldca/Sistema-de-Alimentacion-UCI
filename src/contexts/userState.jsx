@@ -3,7 +3,7 @@ import React,{ useReducer } from 'react'
 import userReducer from './userReducer'
 import UserContext from './userContext'
 import axios from 'axios'
-import  { createUserDb, authUser, updateHis } from './types'; 
+import  { createUserDb, authUser, updateHis, updateUser } from './types'; 
 
 
 function UserState(props) {
@@ -48,7 +48,7 @@ function UserState(props) {
        })
     })
        .catch(error => {
-     console.log(error);
+        alert("Usuario o Contraseña incorrecta")
     });
      
     }
@@ -59,6 +59,13 @@ function UserState(props) {
        })
    
     }
+    const actualizarUsuario = async (user)=>{
+        dispatch({
+            types: createUserDb,
+            payload: user
+        })
+    
+     }
 
 
     const [state, dispatch] = useReducer(userReducer,initialState)
@@ -70,6 +77,7 @@ function UserState(props) {
             createUser,
             autenticarUsuario,
             actualizaHistorial,
+            actualizarUsuario,
             logOutUser
           }}>
           {props.children}

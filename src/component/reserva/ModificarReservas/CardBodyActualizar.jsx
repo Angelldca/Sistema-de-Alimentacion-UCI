@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Card from "react-bootstrap/Card";
-import CardPlatos from './cardPlatos';
+import CardPlatosActualizar from './CardPlatosActualizar';
 
 
-function CardBody({menu, reservar, menuReservar, actualizar}) {
-  const [chekboxs, setChekboxs] = useState([]); 
+function CardBodyActualizar({menu, menuReservar}) {
+  const [chekboxs, setChekboxs] = useState(menu.id_platosMenu); 
   
   function getChekbox (chek) {
     if(!chekboxs.includes(chek)){
@@ -19,13 +19,11 @@ function CardBody({menu, reservar, menuReservar, actualizar}) {
   }
 
     useEffect(()=>{
-      if(chekboxs.length > 0 )
-      menuReservar(menu,chekboxs)
+      //if(chekboxs.length > 0 )
+      menuReservar(menu,chekboxs,menu.id_reserva)
+     
     },[chekboxs])
     
-    useEffect(()=>{
-     
-    },[])
     return (
         <>
              <Card.Body>
@@ -35,7 +33,11 @@ function CardBody({menu, reservar, menuReservar, actualizar}) {
            
                 
              {menu.platos.map((plato,index)=>(
-                 <CardPlatos actualizar={actualizar} getChekbox={getChekbox} reservar={reservar} plato={plato} key={index}/>
+                 <CardPlatosActualizar 
+                 getChekbox={getChekbox} 
+                 chekboxs={chekboxs} 
+                 plato={plato} 
+                 key={index}/>
              ))}
 
             
@@ -46,4 +48,4 @@ function CardBody({menu, reservar, menuReservar, actualizar}) {
     )
 }
 
-export default CardBody
+export default CardBodyActualizar

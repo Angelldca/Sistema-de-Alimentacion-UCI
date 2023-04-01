@@ -24,6 +24,10 @@ import ProtecteRoute from "./component/Protecte/ProtecteRoute"
 import UserPanel from "./component/UserPanel/UserPanel";
 import ListarMenuUsuario from "./component/UserPanel/ListarMenuUsuario";
 import ListarMenuTodos from "./component/menu/ListarMenuTodos";
+import ReservaListAdmin from "./component/reserva/ReservaListAdmin";
+import ReservasRealizadas from "./component/reserva/ModificarReservas/ReservasRealizadas";
+import UsuariosContainer from "./component/Usuarios/UsuariosContainer";
+import UserPanelActualizar from "./component/UserPanel/actualizar/UserPanelActualizar";
 function App() {
 
 
@@ -46,6 +50,14 @@ function App() {
               element: <Menu />,
             },
             {
+              path: "usuarios",
+              element: <UsuariosContainer />,
+            },
+            {
+              path: "actualizar",
+              element: <UserPanelActualizar />,
+            },
+            {
               path: "menu/menuView",
               element: <ListarMenu />,
     
@@ -63,6 +75,14 @@ function App() {
             {
               path: "reserva",
               element: <Reserva />,
+            },
+            {
+              path: "actualizarReserva",
+              element: <ReservasRealizadas />,
+            },
+            {
+              path: "reservatodas", 
+              element: <ReservaListAdmin/>,
             },
             {
               path: "factura",
@@ -91,12 +111,20 @@ function App() {
               element: <ListarMenuUsuario />,
             },
             {
+              path: "actualizar",
+              element: <UserPanelActualizar />,
+            },
+            {
               path: "misfacturas",
               element: <FacturaContainerUser />,
             },
             {
               path: "reserva",
               element: <Reserva />,
+            },
+            {
+              path: "actualizarReserva",
+              element: <ReservasRealizadas />,
             },
           ]
         },

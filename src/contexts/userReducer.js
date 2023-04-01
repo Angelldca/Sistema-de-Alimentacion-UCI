@@ -1,4 +1,4 @@
-import { createUserDb, authUser, updateHis } from './types';
+import { createUserDb, authUser, updateHis, updateUser } from './types';
 
  export default (state, actions) =>{
   const {types, payload} = actions;
@@ -21,7 +21,11 @@ import { createUserDb, authUser, updateHis } from './types';
                     ...state,
                     historial:payload
                 }
-    
+        case updateUser:
+            return{
+                ...state,
+                user: payload
+            }
         default: 
             return{
                 ...state

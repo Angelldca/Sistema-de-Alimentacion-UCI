@@ -35,3 +35,11 @@
     color: #444;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.opUsuario{
+    margin-right: 0px!important;
+    width: 150px !important;
+}
+.usuarios {
+    margin-right: 0px;
+    width: 100px;
+}

@@ -32,24 +32,32 @@ function HeaderUser() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="nav_header">
             <Nav className="mt-4" style={{ alignItems: "baseline" }}>
-              <Link className="dropdown-item" to="reserva" bg="ligth">
-                <p>Reserva</p>
-              </Link>
+              <NavDropdown title="Reserva" id="collasible-nav-dropdown">
+                <NavDropdown.Divider />
+                <Link className="dropdown-item" to={`actualizarReserva`}>
+                  <p className="dropdwon_items">Mis reservas</p>
+                </Link>
+                <NavDropdown.Divider />
+                <Link className="dropdown-item" to={`reserva`}>
+                  <p className="dropdwon_items">Reservar</p>
+                </Link>
+              </NavDropdown>
               <Link className="dropdown-item" to={`misfacturas`}>
                   <p >Facturas</p>
               </Link>
-              <Button 
+             
+              <Link  to="actualizar">
+                <p>{user.username}</p>
+              </Link>
+            </Nav>
+            <Image rounded src="../../img/user.png" placeholder="img" style={{width:"50px"}}/>
+            <Button 
               variant="outline-light" 
-              style={{width:"300px", marginRight:"10px"}}
+              style={{width:"100px", marginRight:"0px", marginLeft:"10px"}}
               onClick={logOutClick}
               >
                 Log out
               </Button>
-              <Nav.Link eventKey={2} href="#">
-                <p>{user.username}</p>
-              </Nav.Link>
-            </Nav>
-            <Image rounded src="../../img/user.png" placeholder="img" style={{width:"50px"}}/>
           </Navbar.Collapse>
         </Container>
       </Navbar>
