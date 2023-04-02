@@ -20,7 +20,7 @@ function CardMenu({ menu, index, setActualizar, actualizar }) {
 
     return (
       <div className="m-2 cards">
-        <Card border="primary" className="cardMenu" style={{ height: "690px" }}>
+        <Card border="primary" className="cardMenu" style={{ height: "900px" }}>
           <Card.Header style={{ display: "flex", maxHeight: "58px" }}>
             {`${
               // JSON.stringify(menu)

@@ -116,7 +116,7 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
   if (reservar === true) {
     return (
       <div className="m-2 cards">
-         <Card border="primary" className="cardMenu" style={{ height: "690px" }}>
+         <Card border="primary" className="cardMenu" style={{ height: "900px" }}>
           <Card.Header style={{ display: "flex", maxHeight: "58px" }}>
             {`${
               // JSON.stringify(menu)
@@ -154,15 +154,12 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
   } else {
     return (
       <div className="m-2 cards">
-        <Card border="primary" className="cardMenu" style={{ height: "690px" }}>
+        <Card border="primary" className="cardMenu" style={{ height: "900px" }}>
           <Card.Header style={{ display: "flex", maxHeight: "58px" }}>
             {`${
               // JSON.stringify(menu)
               fecha
             }`}
-            <Button variant="info" style={{ marginLeft: "20px" }}>
-              <FaTelegramPlane />
-            </Button>
           </Card.Header>
           {menu.map((menu, index) => (
             <CardBody menu={menu} key={index}></CardBody>

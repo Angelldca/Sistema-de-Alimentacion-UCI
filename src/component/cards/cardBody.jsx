@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Card from "react-bootstrap/Card";
 import CardPlatos from './cardPlatos';
-
+import {MdOutlineFreeBreakfast, MdOutlineDinnerDining, MdOutlineLunchDining} from 'react-icons/md'
 
 function CardBody({menu, reservar, menuReservar, actualizar}) {
   const [chekboxs, setChekboxs] = useState([]); 
@@ -30,7 +30,12 @@ function CardBody({menu, reservar, menuReservar, actualizar}) {
         <>
              <Card.Body>
             <Card.Title style={{ textDecorationLine: "underline" }}>
-              {menu.evento}
+              {menu.evento === "Desayuno"? <MdOutlineFreeBreakfast/>
+              :
+                menu.evento === "Almuerzo"? <MdOutlineLunchDining/>
+              : <MdOutlineDinnerDining/>}
+               
+              <span style={{marginLeft:"4px"}}>{menu.evento}</span>
             </Card.Title>
            
                 

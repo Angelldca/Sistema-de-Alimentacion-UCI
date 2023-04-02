@@ -1,5 +1,5 @@
 .cardContainer{
-    border: 1px solid #444;
+   
     margin: 10px;
     padding: 20px;
     border-radius: 5px;
@@ -17,9 +17,21 @@ h3{
     background-color: #ccc;
     max-width: 315px;
     margin-bottom: '5px';
-    height: 690px;
+   
 }
 .cards{
     width: 340px;
     
+}
+
+.cardContenedorPlatos{
+    display: flex;
+    justify-content: space-between;
+}
+.pPlatos{
+    margin: 0px;
+    margin-right: 8px;
+}
+.precioChek{
+    display: flex;
 }

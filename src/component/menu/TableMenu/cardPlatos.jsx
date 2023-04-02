@@ -19,13 +19,15 @@ function CardPlatos({ plato, editar, idPlatos, setIdPlatos }) {
   }
   return (
     <>
-     <span className="me-2 " >{plato.nombre_plato  }</span>
-     
-      <span className="me-2 " >{`${plato.gramaje}`  } </span>
-     
-      <span className="me-2 " >{`$ ${plato.precio_plato}`  }</span>
-     
-      <br/>
+      <div className="cardContenedorPlatos">
+        <p className="pPlatos">{`${plato.nombre_plato}(${plato.gramaje})`}</p>
+        <div className="precioChek">
+        <p className="pPlatos">{`$ ${plato.precio_plato}`}</p>
+       
+        </div>
+        
+
+      </div>
   
     </>
   );

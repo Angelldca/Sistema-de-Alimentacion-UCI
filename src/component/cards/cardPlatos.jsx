@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Card from "react-bootstrap/Card";
+
 function CardPlatos({ plato, reservar, getChekbox,actualizar}) {
   const checkboxRef = useRef(null);
   useEffect(()=>{
@@ -15,12 +15,15 @@ function CardPlatos({ plato, reservar, getChekbox,actualizar}) {
   if(reservar === true){
     return (
       <>
-        <span className="me-2">{plato.nombre_plato}</span>
-        
-        <span className="me-2">{`${plato.gramaje}`} </span>
-       
-        <span className="me-2">{`$ ${plato.precio_plato}`}</span>
+      <div className="cardContenedorPlatos">
+        <p className="pPlatos">{`${plato.nombre_plato}(${plato.gramaje})`}</p>
+        <div className="precioChek">
+        <p className="pPlatos">{`$ ${plato.precio_plato}`}</p>
         <input type="checkbox" name="check" ref={checkboxRef} onChange={handleCheckboxChange}/>
+        </div>
+        
+
+      </div>
         <br/>
       </>
     );
@@ -28,11 +31,12 @@ function CardPlatos({ plato, reservar, getChekbox,actualizar}) {
  else{
    return (
      <>
-       <span className="me-2">{plato.nombre_plato}</span>
-       
-       <span className="me-2">{`${plato.gramaje}`} </span>
-      
-       <span className="me-2">{`$ ${plato.precio_plato}`}</span>
+    <div className="cardContenedorPlatos">
+        <p className="pPlatos">{`${plato.nombre_plato}(${plato.gramaje})`}</p>
+        <div className="precioChek">
+        <p className="pPlatos">{`$ ${plato.precio_plato}`}</p>
+        </div>
+    </div> 
        <br/>
      </>
    );

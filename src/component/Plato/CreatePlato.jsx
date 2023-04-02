@@ -62,7 +62,7 @@ const CreatePlato = ()=> {
 
   return (
     <div className="createPlato">
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleSubmit} style={{ width:"100%"}}>
         <Row className="mb-3">
           <Form.Group as={Col} md="4" controlId="validationCustom01">
             <Form.Label>Nombre del plato</Form.Label>

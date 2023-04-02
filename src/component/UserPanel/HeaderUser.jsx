@@ -35,7 +35,7 @@ function HeaderUser() {
               <NavDropdown title="Reserva" id="collasible-nav-dropdown">
                 <NavDropdown.Divider />
                 <Link className="dropdown-item" to={`actualizarReserva`}>
-                  <p className="dropdwon_items">Mis reservas</p>
+                  <p className="dropdwon_items">Mis reservas disponibles</p>
                 </Link>
                 <NavDropdown.Divider />
                 <Link className="dropdown-item" to={`reserva`}>
