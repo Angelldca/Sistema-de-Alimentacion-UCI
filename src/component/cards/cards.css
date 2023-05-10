@@ -4,6 +4,7 @@
     padding: 20px;
     border-radius: 5px;
     display: flex;
+    
     flex-wrap: wrap;
     justify-content: flex-start;
     height: auto;
@@ -14,10 +15,13 @@ h3{
 }
 
 .cardMenu{
-    background-color: #ccc;
+    background-color: #c2e5f5 !important;
     max-width: 315px;
     margin-bottom: '5px';
    
+}
+.cardbody{
+    background-color: #c2e5f5;
 }
 .cards{
     width: 340px;

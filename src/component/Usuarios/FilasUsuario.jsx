@@ -32,7 +32,7 @@ export default function FilasUsuario({ usuario, index, setActualizar, actualizar
         ...usuario,
     });
 
-    const enableUpdatePlato = () => {
+    const enableUpdateUsuario = () => {
         // btnCancelar.current.style.visibility = "visible"
         btnCancelar.current.style.visibility = "visible";
         sendRef.current.style.visibility = "visible";
@@ -68,7 +68,7 @@ export default function FilasUsuario({ usuario, index, setActualizar, actualizar
             ...usuario,
         });
     };
-    const deletePlato = () => {
+    const deleteUsuario = () => {
         Swal.fire({
             title: "Estas seguro que desea eliminar el registro?",
             text: "Esta accion no se puede deshacer!",
@@ -141,7 +141,7 @@ export default function FilasUsuario({ usuario, index, setActualizar, actualizar
          else{
             inputsRefCorreo.current.className = 'valid';
          }
-         if(!validarTexto(formData.username)){
+         if(!validarTexto(formData.username) || formData.username.length ===0){
             inputsRefusername.current.className = 'invalid';
             validar = false
          }else{
@@ -270,14 +270,14 @@ export default function FilasUsuario({ usuario, index, setActualizar, actualizar
                     style={{ color: "black" }}
                     className="ms-3 me-3"
                     variant="outline-info"
-                    onClick={enableUpdatePlato}
+                    onClick={enableUpdateUsuario}
                 >
                     <TfiWrite />
                 </Button>
                 <Button
                     style={{ color: "black" }}
                     variant="outline-danger"
-                    onClick={deletePlato}
+                    onClick={deleteUsuario}
                 >
                     <RiDeleteBin5Line />
                 </Button>

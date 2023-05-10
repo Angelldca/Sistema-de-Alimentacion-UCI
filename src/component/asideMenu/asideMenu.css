@@ -1,0 +1,48 @@
+
+
+
+.contOptions{
+   
+    width: 500px;
+    height: 100%; 
+}
+.asideMenuContainer{
+   
+    position: fixed;
+    z-index: 1;
+    height: auto;
+    width: 100%;
+    background-color: #c2e5f5;
+    padding-top: 10px;
+    height: 100%; 
+}
+
+ul {
+    list-style: none;
+}
+li{
+   
+    background-color: #68b5cc;
+    margin: 5px;
+    border-radius: 5px;
+    width: 21%;
+    height: 50px;
+    padding: 5px;
+    color: white;
+    font-size: 18px;
+    text-shadow: 0.1em 0.1em 0.2em #444;
+}
+
+
+
+.linkOp{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    text-shadow: 0.1em 0.1em 0.2em #444;
+
+}
+.linkOp:hover{
+    color: #CECAB4;
+    cursor: pointer;
+}

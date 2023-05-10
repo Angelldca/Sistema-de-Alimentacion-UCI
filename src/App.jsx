@@ -28,6 +28,7 @@ import ReservaListAdmin from "./component/reserva/ReservaListAdmin";
 import ReservasRealizadas from "./component/reserva/ModificarReservas/ReservasRealizadas";
 import UsuariosContainer from "./component/Usuarios/UsuariosContainer";
 import UserPanelActualizar from "./component/UserPanel/actualizar/UserPanelActualizar";
+import Reporte from "./component/Reportes/Reporte";
 function App() {
 
 
@@ -100,6 +101,10 @@ function App() {
               path: "plato/platosview",
               element: <PlatoView />,
             },
+            {
+              path:"reporte",
+              element: <Reporte/>
+            }
           ],
         },
         {

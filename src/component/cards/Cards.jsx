@@ -117,7 +117,7 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
     return (
       <div className="m-2 cards">
          <Card border="primary" className="cardMenu" style={{ height: "900px" }}>
-          <Card.Header style={{ display: "flex", maxHeight: "58px" }}>
+          <Card.Header style={{ display: "flex", maxHeight: "58px",background:"#ccc" }}>
             {`${
               // JSON.stringify(menu)
               fecha
@@ -155,7 +155,7 @@ function CardMenu({ setActualizar, actualizar, reservar, menu, index }) {
     return (
       <div className="m-2 cards">
         <Card border="primary" className="cardMenu" style={{ height: "900px" }}>
-          <Card.Header style={{ display: "flex", maxHeight: "58px" }}>
+          <Card.Header style={{ display: "flex", maxHeight: "58px",background:"#ccc" }}>
             {`${
               // JSON.stringify(menu)
               fecha

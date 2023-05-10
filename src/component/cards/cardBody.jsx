@@ -28,7 +28,7 @@ function CardBody({menu, reservar, menuReservar, actualizar}) {
     },[])
     return (
         <>
-             <Card.Body>
+             <Card.Body className="cardbody">
             <Card.Title style={{ textDecorationLine: "underline" }}>
               {menu.evento === "Desayuno"? <MdOutlineFreeBreakfast/>
               :

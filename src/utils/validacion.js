@@ -10,7 +10,7 @@ export function validarTexto(input) {
   }
  export function validarNombre(nombre) { 
     const regex = /^[A-Z][a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-    return nombre.length > 0 && regex.test(nombre) ; // solo texto que empiecen con mayuscula && nombre.trim() === nombre
+    return nombre.length > 0 && regex.test(nombre) ; // solo texto que empiecen con mayuscula 
   }
   export function validarEmail(email) {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

@@ -6,6 +6,8 @@ import FormDate from "../DateChart/DateChart";
 import UserContext from "../../contexts/userContext";
 import { useLocation } from 'react-router-dom';
 import ControlledCarousel from "../carousel/carousel";
+import AsideMenu from "../asideMenu/AsideMenu";
+import "./home.css"
 function HomeAdmin() {
   const {actualizaHistorial, historial}  = useContext(UserContext);
   const location = useLocation();
@@ -18,10 +20,13 @@ function HomeAdmin() {
   return (
     <>
     {/*/<ControlledCarousel/>*/}
+    <div className="containerOptions">
       <Info />
+      <AsideMenu/>
+      </div>
+     
       <CardContainer />
-      <FormDate setdtoPlatosFechas={setdtoPlatosFechas} />
-      <Chart dtoPlatosFecha={dtoPlatosFecha}/>
+      
     </>
   );
 }

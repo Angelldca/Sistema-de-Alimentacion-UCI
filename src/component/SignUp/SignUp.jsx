@@ -59,39 +59,39 @@ function SignUp() {
         event.preventDefault();
         let validar = true;
         if(!validarNombre(values.nombre)){
-            refNombre.current.className = 'invalid';
+            refNombre.current.className = 'invalidInput';
               validar = false
         }else{
             refNombre.current.className = 'controls';
         }
             
         if(!validarEmail(values.correo)){
-           refCorreo.current.className = 'invalid';
+           refCorreo.current.className = 'invalidInput';
            validar = false
         }
         else{
             refCorreo.current.className = 'controls';
         }
         if(!validarTexto(values.username)|| values.username.length === 0){
-           refUsername.current.className = 'invalid';
+           refUsername.current.className = 'invalidInput';
            validar = false
         }else{
            refUsername.current.className = 'controls';
         }
         if(!validarApellidos(values.apellidos)){
-           refApellido.current.className = 'invalid';
+           refApellido.current.className = 'invalidInput';
            validar = false
         }else{
             refApellido.current.className = 'controls';
         }
         if(!validarContrasena(values.password)){
-            refPass.current.className = 'invalid';
+            refPass.current.className = 'invalidInput';
             validar = false
          }else{
             refPass.current.className = 'controls';
          }
          if(!(values.ci.length === 11) ){
-            refCi.current.className = 'invalid';
+            refCi.current.className = 'invalidInput';
             validar = false
          }else{
             refCi.current.className = 'controls';

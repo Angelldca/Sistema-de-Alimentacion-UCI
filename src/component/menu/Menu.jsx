@@ -1,6 +1,6 @@
 import React from 'react'
 import CrearMenu from "./CrearMenu"
-import PlatoView from '../Plato/PlatoView'
+
 
 function Menu() {
     return (
@@ -8,11 +8,7 @@ function Menu() {
             <h4>Gestionar Menu</h4>
             <hr />
             <CrearMenu/>
-                
-            {/*
-            <PlatoView/>
-            
-            */}
+           
         </div>
     )
 }

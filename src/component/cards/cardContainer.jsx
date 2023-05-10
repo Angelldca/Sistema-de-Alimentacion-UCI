@@ -65,9 +65,10 @@ const  CardContainer = ({reservar, todos})=> {
       }
      
     return (
-        <>
-          <h3>Menu disponibles</h3>
+        <div style={{width:"1300px"}}>
+           <h3>Menu disponibles</h3>
           <div className="col-md 10 cardContainer">
+         
               {menuFecha.map((menu,index)=>(
                
                <CardMenu 
@@ -81,7 +82,7 @@ const  CardContainer = ({reservar, todos})=> {
             
               
         </div>
-        </>
+        </div>
       
     )
 }
